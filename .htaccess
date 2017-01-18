@@ -1,0 +1,13 @@
+RewriteEngine on
+
+# redirect www to non-www
+#RewriteCond %{HTTP_HOST} ^www\.bboycomputer\.com$ [NC]
+#RewriteRule ^(.*)$ http://bboycomputer.com/$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^bboycomputer\.com$ [NC]
+RewriteRule ^(.*)$ http://www.bboycomputer.com/$1 [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php/$0 [PT,L]
+ErrorDocument 404 http://www.bboycomputer.com/demo/notfound
