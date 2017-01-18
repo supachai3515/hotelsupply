@@ -51,7 +51,7 @@ class Po_orders_model extends CI_Model {
 		$query = $this->db->query($sql);
 		$row = $query->result_array();
 		return $row;
-	}//
+	}
 
 	public function get_po_order_status_history($po_orders_id)
 	{
@@ -98,9 +98,167 @@ class Po_orders_model extends CI_Model {
 
 	}
 
+	public function reset_order($po_orders_id)
+	{
+		$getorder = $this->get_po_orders_id($po_orders_id);
+		$getorder_detail = $this->get_po_orders_detail_id($po_orders_id);
 
+		if($getorder['is_tax']!= 1){
 
-	 public function get_po_orders_search()
+			$total = 0;
+			$linenumber= 0;
+			$quantity= 0;
+			//detail 
+			foreach ($getorder_detail as $detail) {
+				$total += $detail['quantity']*$detail['price'];
+				$quantity +=$detail['quantity'];
+
+				$data_order_detail = array(
+					'vat' => 0,
+					'total'=> $detail['quantity']*$detail['price'],	
+					'linenumber'=> $linenumber+1,				
+				);
+
+				$where = array('po_order_id' => $po_orders_id, 'product_id' => $detail['product_id']);
+				$this->db->update("po_order_detail", $data_order_detail, $where);
+			}
+
+			$data_order = array(
+				'is_tax' => 0,
+				'vat' => 0,
+				'quantity' => $quantity,
+				'total'=> $total+$getorder['shipping_charge'] ,				
+			);
+
+			$where = "id = '".$po_orders_id."'"; 
+			$this->db->update("po_orders", $data_order, $where);
+		}
+		else {
+
+			$total = 0;
+			$vat  = 0;
+			$linenumber = 0;
+			$quantity= 0;
+			//detail 
+			foreach ($getorder_detail as $detail) {
+
+				$vatthis = ($detail['quantity']*$detail['price']) * 0.07;
+				$vat += $vatthis;
+				$total += $detail['quantity']*$detail['price'] + ($vatthis);
+				$quantity +=$detail['quantity'];
+
+				$data_order_detail = array(
+					'vat' => $vatthis,
+					'total'=> $detail['quantity']*$detail['price'] +  $vatthis,		
+					'linenumber'=> $linenumber+1,		
+				);
+
+				$where = array('po_order_id' => $po_orders_id, 'product_id' => $detail['product_id']);
+				$this->db->update("po_order_detail", $data_order_detail, $where);
+			}
+
+			$data_order = array(
+				'is_tax' => 1,
+				'quantity' => $quantity,
+				'vat' => $vat,
+				'total'=> $total+$getorder['shipping_charge'] ,				
+			);
+
+			$where = "id = '".$po_orders_id."'"; 
+			$this->db->update("po_orders", $data_order, $where);
+		}
+
+	}
+
+	public function update_tax($po_orders_id)
+	{	
+		$data_order = array(
+			'is_tax' => $this->input->post('is_tax')			
+		);
+
+		$where = "id = '".$po_orders_id."'"; 
+		$this->db->update("po_orders", $data_order, $where);
+		$this->reset_order($po_orders_id);
+	}
+	public function update_order_item($po_orders_id, $po_product_id)
+	{
+		$data_order_detail = array(
+				'product_id' => $po_product_id,
+				'quantity'=> $this->input->post('quantity'),
+				'price'=> $this->input->post('price'),	
+			);
+
+			$where = array('po_order_id' => $po_orders_id, 'product_id' => $po_product_id);
+			$this->db->update("po_order_detail", $data_order_detail, $where);
+			$this->reset_order($po_orders_id);
+	}
+
+	public function update_order_add($po_orders_id)
+	{
+
+		 $sql ="SELECT * FROM products WHERE  sku LIKE '%".$this->input->post('sku')."%' LIMIT 1";
+			$query = $this->db->query($sql);
+			$row = $query->row();
+
+			if (isset($row)) {
+
+				$data_order_detail = array(
+				'product_id' => $row->id,
+				'po_order_id' => $po_orders_id,
+				'quantity'=> 0,
+				'price'=> 0,	
+			);
+			$where = array('po_order_id' => $po_orders_id, 'product_id' => $po_product_id);
+			$this->db->delete("po_order_detail", $where);
+			$this->db->insert("po_order_detail", $data_order_detail);
+			$this->reset_order($po_orders_id);	
+			}
+	}
+	
+
+	public function update_tax_info($po_orders_id)
+	{	
+		$data_order = array(
+			'tax_address' => $this->input->post('tax_address'),
+			'tax_id' =>$this->input->post('tax_id'),
+			'tax_company'=> $this->input->post('tax_company')				
+		);
+
+		$where = "id = '".$po_orders_id."'"; 
+		$this->db->update("po_orders", $data_order, $where);
+	}
+
+	public function update_info($po_orders_id)
+	{	
+		$data_order = array(
+			'address' => $this->input->post('address'),
+			'shipping' =>$this->input->post('shipping'),
+			'email'=> $this->input->post('email'),
+			'tel'=> $this->input->post('tel'),					
+		);
+
+		$where = "id = '".$po_orders_id."'"; 
+		$this->db->update("po_orders", $data_order, $where);
+	}
+	
+	public function update_shipping_charge($po_orders_id)
+	{	
+		$data_order = array(
+			'shipping_charge' => $this->input->post('shipping_charge'),				
+		);
+		$where = "id = '".$po_orders_id."'"; 
+		$this->db->update("po_orders", $data_order, $where);
+		$this->reset_order($po_orders_id);
+	}
+
+	public function update_delete_item($po_orders_id, $po_product_id)
+	{
+		$where = array('po_order_id' => $po_orders_id, 'product_id' => $po_product_id);
+		$this->db->delete("po_order_detail",$where);
+		$this->reset_order($po_orders_id);
+	}
+
+	public function get_po_orders_search()
 	{
 		date_default_timezone_set("Asia/Bangkok");
 		$data_po_orders = array(
