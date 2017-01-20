@@ -48,7 +48,7 @@
                                  ใบเสนอราคา
                                 </a>
                         <?php else: ?>
-                            <a target="_blank" class="btn btn-xs btn-default" href="<?php echo  $this->config->item('weburl').'/po_invoice/'.$po_orders['ref_id'] ?>" role="button">    
+                            <a target="_blank" class="btn btn-xs btn-success" href="<?php echo  $this->config->item('weburl').'/po_invoice/'.$po_orders['ref_id'] ?>" role="button">    
                                  ใบสั่งซื้อ
                                 </a>
                         <?php endif ?>

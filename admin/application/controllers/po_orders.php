@@ -125,6 +125,21 @@ class Po_orders extends CI_Controller {
 		}
 
 	}
+	public function update_invoice($po_orders_id)
+	{
+		$this->is_logged_in();
+
+		$this->po_orders_model->update_invoice($po_orders_id);
+
+		if($po_orders_id!=""){
+			redirect('po_orders/edit/'.$po_orders_id);
+		}
+		else {
+			redirect('po_orders');
+		}
+
+	}
+	
 
 	public function update_tax_info($po_orders_id)
 	{

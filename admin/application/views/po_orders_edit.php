@@ -91,9 +91,28 @@
                                             <strong ng-bind="<?php echo $po_orders_data['total'];?> | currency:'฿':0"></strong>
                                         </td>
                                         <td>
-                                            <a href="<?php echo $this->config->item('weburl').'/invoice/'.$po_orders_data['ref_id']; ?>" target="_blank">
-                                                <button type="button" class="btn btn-xs btn-success">ใบสั่งซื้อ</button>
-                                            </a>
+                                        <form class="form-inline" action="<?php echo base_url('po_orders/update_invoice/'.$po_orders_data['id']); ?>" method="POST" role="form">
+                                            <div class="form-group">
+                                                <div class="checkbox">
+                                                    <label for="isactive-0">
+                                                        <input type="checkbox" name="is_invoice" id="is_invoice" value="1" <?php if ($po_orders_data[ 'is_invoice']==1): ?>
+                                                        <?php echo "checked"; ?>
+                                                        <?php endif ?> > ออกใบสั่งซื้อ
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-xs btn-primary">บันทึก</button>
+                                        </form>
+
+                                            <?php if ($po_orders_data['is_invoice']== 0): ?>
+                                                <a target="_blank" class="btn btn-xs btn-default" href="<?php echo  $this->config->item('weburl').'/quotation/'.$po_orders_data['ref_id'] ?>" role="button">    
+                                                     ใบเสนอราคา
+                                                    </a>
+                                            <?php else: ?>
+                                                <a target="_blank" class="btn btn-xs btn-success" href="<?php echo  $this->config->item('weburl').'/po_invoice/'.$po_orders_data['ref_id'] ?>" role="button">    
+                                                     ใบสั่งซื้อ
+                                                    </a>
+                                            <?php endif ?>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -176,10 +176,25 @@ class Po_orders_model extends CI_Model {
 			'is_tax' => $this->input->post('is_tax')			
 		);
 
-		$where = "id = '".$po_orders_id."'"; 
+		$where = array('id' => $po_orders_id);
 		$this->db->update("po_orders", $data_order, $where);
 		$this->reset_order($po_orders_id);
 	}
+
+
+	
+	public function update_invoice($po_orders_id)
+	{	
+		$data_order = array(
+			'is_invoice' => $this->input->post('is_invoice')			
+		);
+
+		$where = array('id' => $po_orders_id);
+		$this->db->update("po_orders", $data_order, $where);
+		$this->reset_order($po_orders_id);
+	}
+
+
 	public function update_order_item($po_orders_id, $po_product_id)
 	{
 		$data_order_detail = array(
