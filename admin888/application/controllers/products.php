@@ -184,7 +184,7 @@ class Products extends CI_Controller {
 		//save product
 		$this->products_model->update_product($product_id);
 
-		$dir ='./uploads/'.date("Ym").'/';
+		$dir ='./../uploads/'.date("Ym").'/';
 		$dir_insert ='uploads/'.date("Ym").'/';
 
 		if($product_id !="")

@@ -134,7 +134,7 @@
                             <tbody>
                                 <?php foreach ($products_list as $product): ?>
                                     <tr>
-                                        <td><img src=" <?php echo base_url($product['image']); ?>" style="width:100px;" class="img-responsive" alt="Image">
+                                        <td><img src=" <?php echo $this->config->item('url_img').$product['image']; ?>" style="width:100px;" class="img-responsive" alt="Image">
                                             <td>
                                                 <span>รหัส : </span>
                                                 <?php echo $product['sku'];?>

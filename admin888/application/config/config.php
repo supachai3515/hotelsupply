@@ -19,17 +19,17 @@ $config['base_url'] .= "://".$_SERVER['HTTP_HOST'];
 $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER['SCRIPT_NAME']);
 
 //Config by user
-$config['sitename'] = "อะไหล่โน๊ตบุ๊ค จอโน๊ตบุ๊ค แบต Mainboard Keyboard อะแดปเตอร์";
-$config['tagline'] = "bboycomputer ทางเราขาย อะไหล่โน๊ตบุ๊ค จอโน๊ตบุ๊ค แบตโน๊ตบุ๊ค อะแดปเตอร์ Mainboard ซ่อมโน๊ตบุ๊ค จำหน่ายอะไหล่ notebook";
-$config['url_img'] = "http://www.bboycomputer.com/admin/";
-$config['no_url_img'] = "http://www.bboycomputer.com/admin/uploads/no_image.jpg";
+$config['sitename'] = "HotelSupply";
+$config['tagline'] = "HotelSupply";
+$config['url_img'] = "../";
+$config['no_url_img'] = "/uploads/no_image.jpg";
 
-$config['email_name'] = "bboycomputers";
+$config['email_name'] = "hotelsupply";
 //$config['email_owner'] = "bboycomputershop@gmail.com";
-$config['email_owner'] = "bboycomputershop@gmail.com";
-$config['email_noreply'] = "bboycom.noreply@gmail.com";
-$config['pass_mail_noreply'] = "bb0yc0mputer";
-$config['weburl'] = "http://www.bboycomputer.com";
+$config['email_owner'] = "hotelsupplyth@gmail.com";
+$config['email_noreply'] = "hotelsupplyth@gmail.com";
+$config['pass_mail_noreply'] = "1Q2W3E4R";
+$config['weburl'] = "http://www.hotelsupply.in.th/";
 
 $config['payment_transfer'] = '<h4>ธนาคารกรุงเทพ</h4>
 								<p>ชื่อบัญชี : นิรันดร์ พงศ์กิตติ์วิศาล<br/>
