@@ -284,7 +284,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="member_discount">ราคา Dealer LV0</label>
+                                <label class="col-md-3 control-label" for="member_discount">ราคา dealer</label>
                                 <div class="col-md-4">
                                     <input id="member_discount" name="member_discount" type="number" placeholder="ราคา Dealer LV0" class="form-control input-md">
                                 </div>
@@ -292,7 +292,7 @@
 
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-3 control-label" for="member_discount_lv1">ราคา Dealer LV1 </label>
+                                <label class="col-md-3 control-label" for="member_discount_lv1">ราคา Hotel</label>
                                 <div class="col-md-4">
                                     <input id="member_discount_lv1" name="member_discount_lv1" type="number" placeholder="ราคา Dealer LV1" class="form-control input-md">
                                 </div>
