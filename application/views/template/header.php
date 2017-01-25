@@ -62,13 +62,13 @@
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="currency">
                                 <span class="menu-lavel">
-                                    LINE ID : bboynotebook2
+                                    LINE ID : hotelsupply
                                 </span>
                             </div>
                         </div>
                         <div class="col-xs-12 hidden-sm hidden-xs col-md-4">
                             <div class="welcome-msg">
-                                <p>ยินดีต้อนรับ BBoyComputer.com</p>
+                                <p>ยินดีต้อนรับ hotelsupply.in.th</p>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-4">
