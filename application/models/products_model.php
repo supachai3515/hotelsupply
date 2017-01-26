@@ -20,7 +20,7 @@ class Products_model extends CI_Model {
 	public function get_products( $start, $limit)
 	{
 
-	    $sql =" SELECT p.* ,t.name type_name, b.name brand_name 
+	    $sql =" SELECT p.* ,t.name type_name, b.name brand_name, t.id type_id, b.id brand_id
 				FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id  
@@ -48,7 +48,7 @@ class Products_model extends CI_Model {
 	public function whereSqlConcat($keyArray)
 	{
 		$countKey = count($keyArray);
-		$sqlString=" SELECT pc.search , p.* ,t.name type_name, b.name brand_name
+		$sqlString=" SELECT pc.search , p.* ,t.name type_name, b.name brand_name, t.id type_id, b.id brand_id
 					FROM products p 
 					INNER JOIN (
 					SELECT CONCAT(IFNULL(name,''), IFNULL(model,''), strip_tags(IFNULL(detail,'')), IFNULL(sku,'')) search ,id FROM products
@@ -110,7 +110,7 @@ class Products_model extends CI_Model {
 	public function get_products_category_brand( $category, $brand, $start, $limit)
 	{
 
-	    $sql =" SELECT p.* ,t.name type_name, b.name brand_name 
+	    $sql =" SELECT p.* ,t.name type_name, b.name brand_name , t.id type_id, b.id brand_id
 				FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
@@ -137,16 +137,40 @@ class Products_model extends CI_Model {
 
 	public function get_products_category( $category, $start, $limit)
 	{
+		  $sql =" SELECT * FROM product_type  
+				WHERE   is_active = '1' AND id = '".$category."' "; 
 
-	    $sql =" SELECT p.* ,t.name type_name, b.name brand_name 
-				FROM  products p 
-				LEFT JOIN product_brand b ON p.product_brand_id = b.id
-				LEFT JOIN product_type t ON p.product_type_id = t.id 
+			$query = $this->db->query($sql);
+			$row = $query->row();
 
-				WHERE  p.is_active= '1' AND  t.is_active = '1' AND t.id ='".$category."' ORDER BY p.id DESC LIMIT " . $start . "," . $limit;
-		$re = $this->db->query($sql);
-		return $re->result_array();
+			if (isset($row))
+			{
+			        if ($row->parenttype_id == 0) {
+			        	$sql ="SELECT p.* ,t.name type_name, b.name brand_name , t.id type_id, b.id brand_id
+						FROM  products p 
+						LEFT JOIN product_brand b ON p.product_brand_id = b.id
+						LEFT JOIN product_type t ON p.product_type_id = t.id 
 
+						WHERE  p.is_active= '1' AND  t.is_active = '1' 
+						AND t.id  IN (SELECT id FROM product_type WHERE parenttype_id = '".$category."')
+						ORDER BY p.id DESC LIMIT " . $start . "," . $limit;
+						$re = $this->db->query($sql);
+						return $re->result_array(); 
+			        }
+			        else{
+
+			        	 $sql =" SELECT p.* ,t.name type_name, b.name brand_name , t.id type_id, b.id brand_id
+						FROM  products p 
+						LEFT JOIN product_brand b ON p.product_brand_id = b.id
+						LEFT JOIN product_type t ON p.product_type_id = t.id 
+
+						WHERE  p.is_active= '1' AND  t.is_active = '1' AND t.id ='".$category."' ORDER BY p.id DESC LIMIT " . $start . "," . $limit;
+						$re = $this->db->query($sql);
+						return $re->result_array();
+
+			        }
+		
+			}
 	}
 
 

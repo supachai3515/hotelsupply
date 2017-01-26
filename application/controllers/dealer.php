@@ -223,6 +223,7 @@ class Dealer extends CI_Controller {
 				'permission' => 2,
 				'verify' => $dealerInfo['verify'],
 				'id' => $dealerInfo['id'],
+				'is_lavel1' => $dealerInfo['is_lavel1'],
 				'is_logged_in' => true
 			);
 			$this->session->set_userdata($data);

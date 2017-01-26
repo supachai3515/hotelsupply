@@ -3911,7 +3911,9 @@ audio.audio-format {
     display: inline-block;
     font-size: 16px;
 }
-
+.btncart{
+  padding: 0px 10px;
+}
 .item-product{
   padding: 10px 10px 20px 10px;
   border: 1px solid #F1F1F1;
@@ -3928,6 +3930,9 @@ audio.audio-format {
   color: #666;
 
 }
+.item-product-info{
+  padding: 10px;
+}
 .item-product-info a:hover {
   color:#45d8bb;
 
@@ -3935,6 +3940,10 @@ audio.audio-format {
 .item-product-title{
   height: 3em;
   overflow: hidden;
+}
+.item-product-cat a{
+  font-size: 14px;
+
 }
 .sub-category{
   background-color: #d8d8d8;
@@ -3957,5 +3966,16 @@ audio.audio-format {
 @media only all and (min-width: 768px) {
   .black-ribbon {
     width: auto;
+  }
+}
+
+@media only all and (min-width: 768px) {
+    .img-product-item {
+     height: 180px;
+    overflow: hidden;
+  }
+    .img-product-item  img{
+    display: block;
+    margin: auto;
   }
 }

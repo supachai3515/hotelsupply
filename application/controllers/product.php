@@ -15,7 +15,7 @@ class Product extends CI_Controller {
 	{
 
 		$id = urldecode($id);
-		$sql ="SELECT p.* ,t.name type_name, b.name brand_name , stock_all
+		$sql ="SELECT p.* ,t.name type_name, b.name brand_name , stock_all , t.id type_id, b.id brand_id
 				FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 

@@ -34,7 +34,7 @@ class Home extends CI_Controller {
 
 		//list product
 		$data['product_new'] = $this->home_model->get_products_new();
-		$data['product_sale'] = $this->home_model->get_products_sale();
+		$data['product_hot'] = $this->home_model->get_products_hot();
 
         //content file view
 		$data['content'] = 'home';

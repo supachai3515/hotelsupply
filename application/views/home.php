@@ -114,72 +114,41 @@
                     <div style="padding-bottom: 20px;"></div>
                     <div class="row">
                         <div class="tab-content">
-                            <!-- grid-product-tab-start -->
-                            <div id="grid" class="tab-pane fade active in">
-
-                            <?php $i=1; foreach ($product_new as $row): ?>
-                                <?php 
-                                    $image_url="";
-                                    if($row['image'] !="")
-                                    {$image_url = $this->config->item('url_img').$row['image'];}
-                                    else{ $image_url = $this->config->item('no_url_img');}
-
-                                    $price =0;
-                                    $disprice = 0;
-                                    if ($this->session->userdata('is_logged_in') && $this->session->userdata('verify') == "1"){
-
-                                        if($row["member_discount"] > 1){
-                                            $price = $row["member_discount"];
-                                        }
-                                        else{
-                                            $price = $row["price"];
-                                        }
-                                        
-                                    }
-                                    else {
-          
-                                             $price = $row["price"];
-                                    }
-
-                                ?>
-
-                                <div class="col-sm-4 col-lg-4 col-md-4">
-                                    <div class="item-product"><a href="<?php echo base_url('product/'.$row['slug']) ?>">
-                                        <img src="<?php echo $image_url;?>" class="img-responsive img-thumbnail" alt="Image"></a>
-                                         <div class="item-product-info">
-                                            <p>
-                                                <h4 class="text-center item-product-title">
-                                                <?php echo $row['type_name']; ?> <?php echo $row['brand_name']; ?> 
-                                                <a href="<?php echo base_url('product/'.$row['slug']) ?>">
-                                                 <?php echo $row['name'] ?> <br/> 
-                                                 <?php if (isset($row['model'])): ?>
-                                                     <small><i class="fa fa-cog" aria-hidden="true"> </i> <?php echo $row['model']; ?></small>
-                                                 <?php endif ?>
-                                                 </a>
-                                                </h4>
-                                                <h4 class="text-center"><strong class="text-success" class="amount" ng-bind="<?php echo $price;?> | currency:'฿':0"></strong></h4>
-                                                
-                                            </p>
-                                        </div>
-                                        <div class="action-button button-exclusive">
-                                            <p class="text-center">
-                                                <a href="<?php echo base_url('cart/add/'.$row["id"]) ?>" class="add-to-cart">
-                                                    <span>+ สั่งซื้อสินค้า</span>
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                              <?php if ($i%3 ==0): ?>
-                                    <div class="clearfix"></div>
-                                <?php endif ?>
-                            <?php $i++;  endforeach ?>
-                            </div>
-                            <!-- grid-product-tab-end -->
+                        <?php 
+                            $data['product_list']= $product_new; 
+                            $this->load->view('template/product-item',$data);
+                             $data['product_list']=  $product_sale; 
+                            $this->load->view('template/product-item',$data);
+                        ?>
                         </div>
                     </div>
                 </div>
                 <!-- new products-area start-->
+                <?php if (count($product_hot) > 0 ): ?>
+                   <!-- new products-area start-->
+                    <div class="newproducts-area">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="product-header">
+                                    <div class="area-title">
+                                        <h2>สินค้าแนะนำ</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding-bottom: 20px;"></div>
+                        <div class="row">
+                            <div class="tab-content">
+                            <?php 
+                                 $data['product_list']=  $product_hot; 
+                                $this->load->view('template/product-item',$data);
+                            ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- new products-area start--> 
+                <?php endif ?>
+                
             </div>
         </div>
     </div>
