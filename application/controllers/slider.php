@@ -48,7 +48,7 @@ class Slider extends CI_Controller {
 		$data['content'] = 'slider';
 		$data['header'] = array('title' => 'slider | '.$this->config->item('sitename'),
 								'description' =>  'slider | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
@@ -64,7 +64,7 @@ class Slider extends CI_Controller {
 		$data['content'] = 'slider_edit';
 		$data['header'] = array('title' => 'slider | '.$this->config->item('sitename'),
 								'description' =>  'slider | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 

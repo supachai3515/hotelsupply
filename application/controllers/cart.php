@@ -16,7 +16,7 @@ class Cart extends CI_Controller
         $data['header'] = array(
             'title' => 'ตะกร้าสินค้า | ' . $this->config->item('sitename'),
             'description' => 'ตะกร้าสินค้า | ' . $this->config->item('tagline'),
-            'author' => 'www.bboycomputer.com',
+            'author' => $this->config->item('author'),
             'keyword' => 'ตะกร้าสินค้า | ' . $this->config->item('tagline')
         );
         //get menu database 

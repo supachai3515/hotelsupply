@@ -114,7 +114,7 @@ class Products_model extends CI_Model {
 				FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
-				WHERE  p.is_active= '1' AND  t.is_active = '1' AND t.slug ='".$category."' AND b.slug ='".$brand."'
+				WHERE  p.is_active= '1' AND  t.is_active = '1' AND t.id ='".$category."' AND b.id ='".$brand."'
 				ORDER BY p.id DESC LIMIT " . $start . "," . $limit;
 		$re = $this->db->query($sql);
 		return $re->result_array();
@@ -127,7 +127,7 @@ class Products_model extends CI_Model {
 		$sql =" SELECT COUNT(p.id) as connt_id FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
-				WHERE   p.is_active= '1'  AND  t.is_active = '1' AND t.slug ='".$category."' "; 
+				WHERE   p.is_active= '1'  AND  t.is_active = '1' AND t.id ='".$category."' "; 
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 		return  $row['connt_id'];
@@ -143,7 +143,7 @@ class Products_model extends CI_Model {
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
 
-				WHERE  p.is_active= '1' AND  t.is_active = '1' AND t.slug ='".$category."' ORDER BY p.id DESC LIMIT " . $start . "," . $limit;
+				WHERE  p.is_active= '1' AND  t.is_active = '1' AND t.id ='".$category."' ORDER BY p.id DESC LIMIT " . $start . "," . $limit;
 		$re = $this->db->query($sql);
 		return $re->result_array();
 
@@ -157,7 +157,7 @@ class Products_model extends CI_Model {
 		$sql =" SELECT COUNT(p.id) as connt_id FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
-				WHERE p.is_active= '1' AND  t.is_active = '1' AND   b.slug ='".$brand."'"; 
+				WHERE p.is_active= '1' AND  t.is_active = '1' AND   b.id ='".$brand."'"; 
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 		return  $row['connt_id'];
@@ -172,7 +172,7 @@ class Products_model extends CI_Model {
 				FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
-				WHERE p.is_active= '1' AND  t.is_active = '1' AND  b.slug ='".$brand."'
+				WHERE p.is_active= '1' AND  t.is_active = '1' AND  b.id ='".$brand."'
 				ORDER BY p.id DESC LIMIT " . $start . "," . $limit;
 		$re = $this->db->query($sql);
 		return $re->result_array();

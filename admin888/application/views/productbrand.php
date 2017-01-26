@@ -85,14 +85,6 @@
                                 </div>
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-3 control-label" for="model">รายละเอียด</label>
-                                <div class="col-md-6">
-                                    <input id="description" name="description" type="text" placeholder="description" class="form-control input-md">
-                                </div>
-                            </div>
-
                             <!-- Textarea -->
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="description">รายละเอียด</label>

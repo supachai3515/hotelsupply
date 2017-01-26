@@ -50,7 +50,7 @@ class Productbrand extends CI_Controller {
 		$data['script_file']= "js/product_add_js";
 		$data['header'] = array('title' => 'productbrand| '.$this->config->item('sitename'),
 								'description' =>  'productbrand| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
@@ -70,7 +70,7 @@ class Productbrand extends CI_Controller {
 		$data['script_file']= "js/product_add_js";
 		$data['header'] = array('title' => 'productbrand| '.$this->config->item('sitename'),
 								'description' =>  'productbrand| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
@@ -87,7 +87,7 @@ class Productbrand extends CI_Controller {
 		$data['script_file']= "js/product_add_js";
 		$data['header'] = array('title' => 'productbrand| '.$this->config->item('sitename'),
 								'description' =>  'productbrand| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 

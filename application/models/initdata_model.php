@@ -28,11 +28,30 @@ class Initdata_model extends CI_Model {
 
 	public function get_type()
 	{
-		$sql ="SELECT pt.id, pt.name, pt.slug ,COUNT(p.id) count_product FROM product_type  pt 
-		INNER JOIN products p ON p.product_type_id = pt.id 
-		WHERE pt.is_active = 1 AND p.is_active= '1'  GROUP BY  pt.id, pt.name ,pt.slug
-		HAVING COUNT(p.id) > 0
-		ORDER BY pt.name"; 
+		//$sql ="SELECT pt.id, pt.name, pt.slug ,COUNT(p.id) count_product FROM product_type  pt 
+		//INNER JOIN products p ON p.product_type_id = pt.id 
+		//WHERE pt.is_active = 1 AND p.is_active= '1'  GROUP BY  pt.id, pt.name ,pt.slug
+		//HAVING COUNT(p.id) > 0
+		//ORDER BY pt.name"; 
+
+		$sql ="SELECT pt.id, pt.name, pt.slug 
+				FROM product_type  pt 
+						WHERE pt.is_active = 1   AND pt.parenttype_id = 0
+				GROUP BY  pt.id, pt.name ,pt.slug
+						ORDER BY pt.name;";
+		$result = $this->db->query($sql);
+		return  $result->result_array();
+	}
+	public function get_sub_type()
+	{
+		
+		$sql = "SELECT pt.id, pt.name, pt.slug ,pt.parenttype_id ,COUNT(p.id) count_product 
+				FROM product_type  pt 
+						INNER JOIN products p ON p.product_type_id = pt.id 
+						WHERE pt.is_active = 1 AND p.is_active= '1'   AND pt.parenttype_id != 0
+				GROUP BY  pt.id, pt.name ,pt.slug
+						HAVING COUNT(p.id) > 0
+						ORDER BY pt.name; ";
 		$result = $this->db->query($sql);
 		return  $result->result_array();
 	}
@@ -51,6 +70,21 @@ class Initdata_model extends CI_Model {
 		return $re->result_array();
 	}
 
+	public function get_type_by_id($id)
+	{
+		$sql ="SELECT * FROM product_type
+		WHERE id = '".$id."'"; 
+		$result = $this->db->query($sql);
+		return  $result->row_array();
+	}
+
+	public function get_brand_by_id($id)
+	{
+		$sql ="SELECT * FROM product_brand
+		WHERE id = '".$id."'"; 
+		$result = $this->db->query($sql);
+		return  $result->row_array();
+	}
 
 	public function get_type_by_slug($slug)
 	{

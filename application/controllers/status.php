@@ -17,7 +17,7 @@ class Status extends CI_Controller {
 		//header meta tag 
 		$data['header'] = array('title' => 'สถานะสินค้า | '.$this->config->item('sitename'),
 								'description' =>  'สถานะสินค้า | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'สถานะสินค้า | '.$this->config->item('tagline') );
 
 		//get menu database 

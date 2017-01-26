@@ -3,54 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3 col-lg-3 col-md-3">
-                <div class="left-sidebar">
-                    <!-- category-menu-area start-->
-                    <div class="category-menu-area hidden-sm hidden-xs">
-                        <div class="category-title">
-                            <h2>ประเภทสินค้า</h2>
-                        </div>
-                        <div class="category-menu" id="cate-toggle">
-                            <ul>
-                                <?php foreach ($menu_type as $master): ?>
-                                <li class="has-sub">
-                                    <a href="#">
-                                        <?php echo $master['name']; ?><span> (<?php echo $master['count_product'] ?>)</a>
-                                    <ul class="category-sub">
-                                     
-                                            <?php foreach ($brand_oftype as $detail): ?>
-                                            <?php if ($master['id'] == $detail['product_type_id'] && $detail['product_brand_name'] !=""): ?>
-                                            <li class="sub-category"><a href="<?php echo base_url('products/category_brand/'.$master['slug'].'/'.$detail['product_brand_slug']) ?>"><?php echo  $detail['product_brand_name']; ?></a></li>
-                                            <?php endif ?>
-                                            <?php endforeach ?>
-                                            <li class="sub-category"><a href="<?php echo base_url('products/category/'.$master['slug']) ?>">ทั้งหมด</a></li>
-                                    </ul>
-                                </li>
-                                <?php endforeach ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- category-menu-area end-->
-                    <!-- category-menu-area start-->
-                    <div class="category-menu-area hidden-sm hidden-xs">
-                        <div class="category-title title-brand">
-                            <h2>ยี่ห้อสินค้า</h2>
-                        </div>
-                        <div class="category-menu" id="cate-toggle">
-                            <ul>
-                            <?php foreach ($menu_brands as $brand): ?>
-                                 <?php if ($brand['name']!="" && $brand['type_id'] !="7"): ?>
-                                        <li>
-                                    <a href="<?php echo base_url('products/brand/'.$brand['slug']) ?>"><?php echo $brand['name'] ?>
-                                    <span>(<?php echo $brand['count_product'] ?>)</span>
-                                    </a>
-                                </li>
-                                <?php endif ?>
-                                <?php endforeach ?>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- category-menu-area end-->
-                </div>
+            <?php 
+                 //left-sidebar
+                $data['page']= "product_detail";
+                     $this->load->view('template/left-sidebar',$data);
+            ?>
             </div>
             <div class="col-sm-9 col-lg-9 col-md-9">
                 <div class="row">
@@ -148,14 +105,12 @@
                                                 <a href="https://twitter.com/home?status=<?php echo base_url('product/'.$product_detail['slug']) ?>" target="_blank">
                                                     <i class="fa fa-twitter"></i> Tweet
                                                 </a>
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo base_url('product/'.$product_detail['slug']) ?>" target="_blank">
+
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u="<?php echo base_url('product/'.$product_detail['id']); ?>" target="_blank">
                                                     <i class="fa fa-facebook"></i> Share
                                                 </a>
-                                                <a href="https://plus.google.com/share?url=<?php echo base_url('product/'.$product_detail['slug']) ?>" target="_blank">
+                                                <a href="https://plus.google.com/share?url=<?php echo base_url('product/'.$product_detail['id']) ?>" target="_blank">
                                                     <i class="fa fa-google-plus"></i> Google+
-                                                </a>
-                                                <a href="http://www.reddit.com/submit?url=<?php echo base_url('product/'.$product_detail['slug']) ?>&amp;title=bboycomputer" target="_blank">
-                                                    <i class="fa fa-pinterest"></i> Pinterest
                                                 </a>
                                             </div>
                                         </div>
@@ -164,25 +119,25 @@
                             </div>
                         </div>
                         <!-- product-overview-start -->
-                            <div class="product-overview">
-                                <div class="product-overview-tab-menu">
-                                    <ul>
-                                        <li class="active"><a href="#moreinfo" data-toggle="tab">รายละเอียด</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content">
-                                    <div id="moreinfo" class="tab-pane fade in active">
-                                        <div class="rte">
-                                            <p>
-                                                <?php if (isset($product_detail['detail'])  && $product_detail['detail'] !=''): ?>
-                                                <?php echo $product_detail['detail'] ?>
-                                                <?php endif ?>
-                                            </p>
-                                        </div>
+                        <div class="product-overview">
+                            <div class="product-overview-tab-menu">
+                                <ul>
+                                    <li class="active"><a href="#moreinfo" data-toggle="tab">รายละเอียด</a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div id="moreinfo" class="tab-pane fade in active">
+                                    <div class="rte">
+                                        <p>
+                                            <?php if (isset($product_detail['detail'])  && $product_detail['detail'] !=''): ?>
+                                            <?php echo $product_detail['detail'] ?>
+                                            <?php endif ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- product-overview-end -->
+                        </div>
+                        <!-- product-overview-end -->
                     </div>
                 </div>
             </div>

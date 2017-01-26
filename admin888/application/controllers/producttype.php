@@ -51,7 +51,7 @@ class Producttype extends CI_Controller {
 		$data['script_file']= "js/product_add_js";
 		$data['header'] = array('title' => 'producttype| '.$this->config->item('sitename'),
 								'description' =>  'producttype| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
@@ -71,7 +71,7 @@ class Producttype extends CI_Controller {
 		$data['script_file']= "js/product_add_js";
 		$data['header'] = array('title' => 'producttype| '.$this->config->item('sitename'),
 								'description' =>  'producttype| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
@@ -89,7 +89,7 @@ class Producttype extends CI_Controller {
 		$data['script_file']= "js/product_add_js";
 		$data['header'] = array('title' => 'producttype| '.$this->config->item('sitename'),
 								'description' =>  'producttype| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 

@@ -115,7 +115,7 @@ class Products extends CI_Controller {
 		echo $product_id;
 
 		$image_name = ""; 
-		$dir ='./uploads/'.date("Ym").'/';
+		$dir ='./../uploads/'.date("Ym").'/';
 		$dir_insert ='uploads/'.date("Ym").'/';
 
 		if($product_id!="")

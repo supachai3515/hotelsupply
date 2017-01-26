@@ -14,7 +14,7 @@ class Payment extends CI_Controller {
 		//header meta tag 
 		$data['header'] = array('title' => 'แจ้งชำระเงิน | '.$this->config->item('sitename'),
 								'description' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'แจ้งชำระเงิน | '.$this->config->item('tagline') );
 
 		//get menu database 

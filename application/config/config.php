@@ -21,8 +21,9 @@ $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER
 //Config by user
 $config['sitename'] = "HotelSupply";
 $config['tagline'] = "HotelSupply";
-$config['url_img'] = "";
-$config['no_url_img'] = "/uploads/no_image.jpg";
+$config['author'] = "HotelSupply";
+$config['url_img'] = "http://localhost/hotelsupply/";
+$config['no_url_img'] = "http://localhost/hotelsupply/uploads/no_image.jpg";
 
 $config['email_name'] = "hotelsupply";
 //$config['email_owner'] = "bboycomputershop@gmail.com";

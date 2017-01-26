@@ -49,7 +49,7 @@ class Members extends CI_Controller {
 		$data['content'] = 'members';
 		$data['header'] = array('title' => 'members | '.$this->config->item('sitename'),
 								'description' =>  'members | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
@@ -67,7 +67,7 @@ class Members extends CI_Controller {
 		$data['content'] = 'members';
 		$data['header'] = array('title' => 'members | '.$this->config->item('sitename'),
 								'description' =>  'members | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
@@ -83,7 +83,7 @@ class Members extends CI_Controller {
 		$data['content'] = 'members_edit';
 		$data['header'] = array('title' => 'members | '.$this->config->item('sitename'),
 								'description' =>  'members | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 

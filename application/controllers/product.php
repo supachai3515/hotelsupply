@@ -11,16 +11,17 @@ class Product extends CI_Controller {
 	}
 
 	//page view
-	public function index($slug)
+	public function index($id)
 	{
 
-		$slug = urldecode($slug);
+		$id = urldecode($id);
 		$sql ="SELECT p.* ,t.name type_name, b.name brand_name , stock_all
 				FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
-				LEFT JOIN (SELECT product_id, SUM(number) stock_all FROM stock  GROUP BY product_id) s ON s.product_id = p.id 
-				WHERE p.slug = '".$slug."'"; 
+				LEFT JOIN (SELECT product_id, SUM(number) stock_all FROM stock  
+				GROUP BY product_id) s ON s.product_id = p.id 
+				WHERE p.id = '".$id."'"; 
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 		$data['product_detail'] = $row;
@@ -30,19 +31,19 @@ class Product extends CI_Controller {
 		$row_img = $query_img->result_array();;
 		$data['product_images'] = $row_img;
 
-
 		if(isset($row['id'] ))
 		{
 
 			//header meta tag 
-			$data['header'] = array('title' => $row['name'].' | bboycomputer',
+			$data['header'] = array('title' => $row['name'].' | '.$this->config->item('sitename'),
 									'description' =>  $row['name'].' | '.$this->config->item('tagline'),
-									'author' => 'www.bboycomputer.com',
+									'author' => $this->config->item('author'),
 									'keyword' =>  $row['name'].' | '.$this->config->item('tagline') );
 			//get menu database 
 			$this->load->model('initdata_model');
 			$data['menus_list'] = $this->initdata_model->get_menu();
 			$data['menu_type'] = $this->initdata_model->get_type();
+			$data['menu_sub_type'] = $this->initdata_model->get_sub_type();
 			$data['menu_brands'] = $this->initdata_model->get_brands();
 			$data['brand_oftype'] = $this->products_model->get_brand_oftype();
 

@@ -48,12 +48,13 @@ class Products extends CI_Controller {
 
 		$data['header'] = array('title' => 'สินค้า | '.$this->config->item('sitename'),
 								'description' =>  'สินค้า | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		//get menu database 
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
+		$data['menu_sub_type'] = $this->initdata_model->get_sub_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 		$data['brand_oftype'] = $this->products_model->get_brand_oftype();
 
@@ -103,19 +104,20 @@ class Products extends CI_Controller {
 		$data['product_list'] = $this->products_model->get_products_category_brand($type, $brand, $page, $config['per_page']);
 		$data['links_pagination'] = $this->pagination->create_links();
 
-		$type_all = $this->initdata_model->get_type_by_slug($type);
-		$brand_all = $this->initdata_model->get_brand_by_slug($brand);
+		$type_all = $this->initdata_model->get_type_by_id($type);
+		$brand_all = $this->initdata_model->get_brand_by_id($brand);
 
 		$data['title_tag'] ='หมวดสินค้า : '.$type_all['name'].' - '.$brand_all['name'];
 
-		$data['header'] = array('title' => $type .$brand.' | '.$this->config->item('sitename'),
-								'description' =>  $type .$brand.' | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
-								'keyword' =>   $type .$brand.' | '.$this->config->item('tagline') );
+		$data['header'] = array('title' => $type_all['name'] .$brand_all['name'].' | '.$this->config->item('sitename'),
+								'description' =>  $type_all['name'] .$brand_all['name'].' | '.$this->config->item('tagline'),
+								'author' => $this->config->item('author'),
+								'keyword' =>   $type_all['name'] .$brand_all['name'].' | '.$this->config->item('tagline') );
 		//get menu database 
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
+		$data['menu_sub_type'] = $this->initdata_model->get_sub_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 		$data['brand_oftype'] = $this->products_model->get_brand_oftype();
 
@@ -166,18 +168,19 @@ class Products extends CI_Controller {
 		$data['links_pagination'] = $this->pagination->create_links();
 
 
-		$type_all = $this->initdata_model->get_type_by_slug($type);
+		$data['detail'] = $type_all = $this->initdata_model->get_type_by_id($type);
 		$data['title_tag'] ='หมวดสินค้า : '.$type_all['name'].'';
 
-		$data['header'] = array('title' => $type .' | '.$this->config->item('sitename'),
-								'description' =>  $type .' | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
-								'keyword' =>   $type .' | '.$this->config->item('tagline') );
+		$data['header'] = array('title' => $type_all['name'] .' | '.$this->config->item('sitename'),
+								'description' =>  $type_all['name'] .' | '.$this->config->item('tagline'),
+								'author' => $this->config->item('author'),
+								'keyword' =>   $type_all['name'] .' | '.$this->config->item('tagline') );
 		//get menu database 
 		//get menu database 
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
+		$data['menu_sub_type'] = $this->initdata_model->get_sub_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 		$data['brand_oftype'] = $this->products_model->get_brand_oftype();
 
@@ -228,17 +231,18 @@ class Products extends CI_Controller {
 		$data['product_list'] = $this->products_model->get_products__brand($brand, $page, $config['per_page']);
 		$data['links_pagination'] = $this->pagination->create_links();
 
-		$brand_all = $this->initdata_model->get_brand_by_slug($brand);
+		$data['detail'] = $brand_all = $this->initdata_model->get_brand_by_id($brand);
 		$data['title_tag'] ='ยี่ห้อสินค้า : '.$brand_all['name'];
 
-		$data['header'] = array('title' => $brand .' | '.$this->config->item('sitename'),
-								'description' =>  $brand .' | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
-								'keyword' => $brand .' | '.$this->config->item('tagline') );
+		$data['header'] = array('title' => $brand_all['name'].' | '.$this->config->item('sitename'),
+								'description' => $brand_all['name'].' | '.$this->config->item('tagline'),
+								'author' => $this->config->item('author'),
+								'keyword' => $brand_all['name'].' | '.$this->config->item('tagline') );
 		//get menu database 
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
+		$data['menu_sub_type'] = $this->initdata_model->get_sub_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 		$data['brand_oftype'] = $this->products_model->get_brand_oftype();
 
@@ -250,7 +254,6 @@ class Products extends CI_Controller {
 		$this->load->view('template/layout', $data);	
 
 	}
-
 
 
 	//page search
@@ -285,12 +288,13 @@ class Products extends CI_Controller {
 
 		$data['header'] = array('title' => 'ค้นหา '. $get_searchText .' | '.$this->config->item('sitename'),
 								'description' =>  'ค้นหา '. $get_searchText .' | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' => 'ค้นหา '. $get_searchText .' | '.$this->config->item('tagline') );
 		//get menu database 
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
+		$data['menu_sub_type'] = $this->initdata_model->get_sub_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 		$data['brand_oftype'] = $this->products_model->get_brand_oftype();
 
@@ -301,7 +305,6 @@ class Products extends CI_Controller {
 		//load layout
 		$this->load->view('template/layout', $data);
 	}
-
 
 }
 

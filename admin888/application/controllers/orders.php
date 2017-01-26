@@ -49,7 +49,7 @@ class Orders extends CI_Controller {
 		$data['content'] = 'orders';
 		$data['header'] = array('title' => 'orders| '.$this->config->item('sitename'),
 								'description' =>  'orders| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 	}
@@ -69,7 +69,7 @@ class Orders extends CI_Controller {
 		$data['content'] = 'orders';
 		$data['header'] = array('title' => 'orders| '.$this->config->item('sitename'),
 								'description' =>  'orders| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 
@@ -89,7 +89,7 @@ class Orders extends CI_Controller {
 		$data['content'] = 'orders_edit';
 		$data['header'] = array('title' => 'orders| '.$this->config->item('sitename'),
 								'description' =>  'orders| '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'bboycomputer');
 		$this->load->view('template/layout', $data);	
 

@@ -15,7 +15,7 @@ class Howtobuy extends CI_Controller {
 		//header meta tag 
 		$data['header'] = array('title' => 'วิธีการสั่งซื้อ | '.$this->config->item('sitename'),
 								'description' =>  'วิธีการสั่งซื้อ | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'วิธีการสั่งซื้อ | '.$this->config->item('tagline') );
 
 		//get menu database 

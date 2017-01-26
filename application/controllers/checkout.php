@@ -40,7 +40,7 @@ class Checkout extends CI_Controller {
 		//header meta tag 
 		$data['header'] = array('title' => 'ยืนยันการสั่งซื้อ | '.$this->config->item('sitename'),
 								'description' =>  'ยืนยันการสั่งซื้อ | '.$this->config->item('tagline'),
-								'author' => 'www.bboycomputer.com',
+								'author' => $this->config->item('author'),
 								'keyword' =>  'ยืนยันการสั่งซื้อ | '.$this->config->item('tagline') );
 		//get menu database 
 		$this->load->model('initdata_model');

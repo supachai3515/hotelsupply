@@ -23,6 +23,7 @@ class Home extends CI_Controller {
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();
 		$data['menu_type'] = $this->initdata_model->get_type();
+		$data['menu_sub_type'] = $this->initdata_model->get_sub_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 		$data['brand_oftype'] = $this->initdata_model->get_brand_oftype();
 
