@@ -54,12 +54,22 @@
                     <span class="new-price" ng-bind="<?php echo $dis_price;?> | currency:'฿':0"></span>
                     <?php endif ?>
                 </div>
-            </div>
+            </div>                          
             <div class="action-button button-exclusive btncart">
-                <a href="<?php echo base_url('cart/add/'.$row[" id "]) ?>" class="add-to-cart">
-                    <span>+ สั่งซื้อสินค้า</span>
-                </a>
+                <?php if ($row['stock'] > 0): ?>
+                    <a href="<?php echo base_url('cart/add/'.$row["id"]) ?>" class="add-to-cart">
+                        <span>+ สั่งซื้อสินค้า</span>
+                    </a>
+                <?php endif ?>
             </div>
+
+            <?php if ($this->session->userdata('is_lavel1')): ?>
+                <div class="item-product-title btn-po">
+                     <a href="<?php echo base_url('po_order/add/'.$row["id"]) ?>" > + เสนอราคา</a>
+                    </a>
+                </div>
+            <?php endif ?>
+            
         </div>
     </div>
     <?php if ($i%3 ==0): ?>

@@ -86,7 +86,7 @@
                         <div class="col-md-3">
                             <div class="logo">
                                 <a href="<?php echo base_url()?>">
-                                    <img src="<?php echo base_url('theme');?>/img/logo/logo.png" alt="">
+                                    <img src="<?php echo base_url('theme');?>/img/logo/logo-hotelsupply.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -123,12 +123,12 @@
                                         <div class="mini-cart-content" ng-if="sumTotal() > 1">
                                             <div class="cart-img-details" ng-repeat="item in productItems" ng-if="item.price != '0'">
                                                 <div class="cart-img-photo">
-                                                    <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>">
+                                                    <a href="<?php echo base_url('product/'.'{{item.id}}') ?>">
                                                         <img src="{{item.img}}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="cart-img-contaent">
-                                                    <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>"  ><h4  ng-bind="item.name"></h4></a>
+                                                    <a href="<?php echo base_url('product/'.'{{item.id}}') ?>"  ><h4  ng-bind="item.name"></h4></a>
                                                     <span class="quantity"><span ng-bind="item.quantity"></span> ชิ้น</span>
                                                     <span ng-bind="item.price | currency:'฿':0"></span>
                                                 </div>

@@ -30,22 +30,25 @@
                             <div class="row">
                                 <div class="col-sm-5 col-lg-5 col-md-5">
                                     <?php if (count($product_images)==0): ?>
-                                    <img width="100%" src="<?php echo $this->config->item('no_url_img');?>" class="img-responsive" alt="Image">
+                                        <img src="<?php echo $this->config->item('no_url_img');?>" class="img-responsive" alt="Image">
                                     <?php endif ?>
                                     <?php $i= 1; foreach ($product_images as $value): ?>
                                     <?php 
 										$image_url="";
-										if($value['path'] !="")
-										{$image_url = $this->config->item('url_img').$value['path'];}
-										else{$image_url = $this->config->item('no_url_img');}
+										if($value['path'] !=""){
+                                            $image_url = $this->config->item('url_img').$value['path'];
+                                        }
+										else { 
+                                            $image_url = $this->config->item('no_url_img');
+                                        }
 									?>
                                     <?php if ($i==1): ?>
-                                    <a class="fancybox-thumb" data-fancybox-group="group" href="<?php echo $image_url;?>">
+                                        <a class="fancybox-thumb" data-fancybox-group="group" href="<?php echo $image_url;?>">
 											<img  width="100%" src="<?php echo $image_url;?>" alt="" /></a>
-                                    <br>
+                                        <br>
                                     <?php else: ?>
-                                    <a class="fancybox-thumb" data-fancybox-group="group" href="<?php echo $image_url;?>">
-											<img  width="100px" style="padding: 10px 5px" src="<?php echo $image_url;?>" alt="" /></a>
+                                        <a class="fancybox-thumb" data-fancybox-group="group" href="<?php echo $image_url;?>">
+									       <img  width="100px" style="padding: 10px 5px" src="<?php echo $image_url;?>" alt="" /></a>
                                     <?php endif ?>
                                     <?php $i++ ; endforeach ?>
                                 </div>
@@ -62,7 +65,7 @@
                                             <br>
                                             <?php endif ?>
                                             <?php if (isset($product_detail['brand_name'])  && $product_detail['brand_name'] !=''): ?>
-                                            <span><strong>BRAND : </strong></span><span> <?php echo $product_detail['brand_name'] ?></span>
+                                            <span><strong>BRAND : </strong></span><span> <a href="<?php echo base_url('products/brand/'.$product_detail['brand_id']) ?>"><?php echo $product_detail['brand_name'] ?></a></span>
                                             <br>
                                             <?php endif ?>
                                         </p>
@@ -70,39 +73,60 @@
                                             <?php echo $product_detail['shot_detail'] ?>
                                         </p>
                                         <p class="pquantityavailable">
-                                            <span class="stock-status">
-											มีสินค้า
-										</span>
+                                        <?php if ($product_detail['stock'] > 0): ?>
+                                            <span class="stock-status">มีสินค้า</span>
+                                        <?php else: ?>
+                                            <span class="label label-danger">หมดชั่วคราว</span>
+                                        <?php endif ?>
+                                           
                                         </p>
                                         <div class="price-box-area">
                                             <?php 
-                             
-			                                    $price =0;
-			                                    $disprice = 0;
-			                                    if ($this->session->userdata('is_logged_in') && $this->session->userdata('verify') == "1"){
+                                                $price = $price = $product_detail["price"];
+                                                $dis_price = $disprice = $product_detail["dis_price"];
 
-			                                        if($product_detail["member_discount"] > 1){
-			                                            $price = $product_detail["member_discount"];
-			                                        }
-			                                        else{
-			                                            $price = $product_detail["price"];
-			                                        }
-			                                        
-			                                    }
-			                                    else {
-			                                         $price = $product_detail["price"];
-			                                    }
-			                                ?>
-                                            <span class="new-price" ng-bind="<?php echo $price;?> | currency:'฿':0"></span>
+                                                if ($this->session->userdata('is_logged_in') && $this->session->userdata('verify') == "1") {
+
+                                                    if($this->session->userdata('is_lavel1')) {
+                                                        if($product_detail["member_discount_lv1"] > 1){
+                                                            $dis_price = $product_detail["member_discount_lv1"];
+                                                        }
+                                                    }
+                                                    else {
+
+                                                        if($product_detail["member_discount"] > 1){
+                                                            $dis_price = $product_detail["member_discount"];
+                                                        }
+                                                    }
+                                                }
+                                            ?>
+                                            <?php if ($dis_price < $price): ?>
+                                            <span class="new-price" ng-bind="<?php echo $dis_price;?> | currency:'฿':0"></span>
+                                            <span class="old-price" ng-bind="<?php echo $price;?> | currency:'฿':0"></span>
+                                            <?php else: ?>
+                                            <span class="new-price" ng-bind="<?php echo $dis_price;?> | currency:'฿':0"></span>
+                                            <?php endif ?>
                                         </div>
+                                        
                                         <div class="action-button button-exclusive">
+                                        <?php if ($product_detail['stock'] > 0): ?>
                                             <a href="<?php echo base_url('cart/add/'.$product_detail["id"]) ?>" class="add-to-cart">
                                                 <span>+ สั่งซื้อสินค้า</span>
                                             </a>
+                                        <?php endif ?>
+
+                                        <?php if ($this->session->userdata('is_lavel1')): ?>
+                                           <a href="<?php echo base_url('po_order/add/'.$product_detail["id"]) ?>" class="add-to-cart">
+                                            <span>+ เสนอราคา</span>
+                                        </a> 
+                                        <?php endif ?>
+                                        
                                         </div>
+                                    
+                                        
                                         <div class="btn-group" style="padding-bottom:10px;">
                                             <div class="shere-button">
-                                                <a href="https://twitter.com/home?status=<?php echo base_url('product/'.$product_detail['slug']) ?>" target="_blank">
+                                                <a href="https://twitter.com/home?status=<?php echo base_url('product/'.$product_detail['id']) ?>" target="_blank">
                                                     <i class="fa fa-twitter"></i> Tweet
                                                 </a>
 
