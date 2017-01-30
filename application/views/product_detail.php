@@ -76,7 +76,7 @@
                                         <?php if ($product_detail['stock'] > 0): ?>
                                             <span class="stock-status">มีสินค้า</span>
                                         <?php else: ?>
-                                            <span class="label label-danger">หมดชั่วคราว</span>
+                                            <small><span class="label label-default">สินค้าหมด</span></span></small>
                                         <?php endif ?>
                                            
                                         </p>
@@ -116,7 +116,7 @@
                                         <?php endif ?>
 
                                         <?php if ($this->session->userdata('is_lavel1')): ?>
-                                           <a href="<?php echo base_url('po_order/add/'.$product_detail["id"]) ?>" class="add-to-cart">
+                                           <a href="<?php echo base_url('dealer_po/add/'.$product_detail["id"]) ?>" class="add-to-cart">
                                             <span>+ เสนอราคา</span>
                                         </a> 
                                         <?php endif ?>

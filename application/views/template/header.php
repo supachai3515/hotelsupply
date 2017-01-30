@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" type="text/css" media="all" />
     <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Athiti|Kanit:200" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('theme');?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url('theme');?>/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url('theme');?>/css/owl.carousel.css">

@@ -55,17 +55,25 @@
                     <?php endif ?>
                 </div>
             </div>                          
-            <div class="action-button button-exclusive btncart">
-                <?php if ($row['stock'] > 0): ?>
+            
+            <?php if ($row['stock'] > 0): ?>
+                <div class="action-button button-exclusive btncart">
                     <a href="<?php echo base_url('cart/add/'.$row["id"]) ?>" class="add-to-cart">
                         <span>+ สั่งซื้อสินค้า</span>
                     </a>
-                <?php endif ?>
-            </div>
+                </div>
+            <?php else: ?>
+                 <div class="action-button button-exclusive btncart outof-stock">
+                    <a href="<?php echo base_url('product/'.$row['id']) ?>" class="add-to-cart">
+                        <span>สินค้าหมด</span>
+                    </a>
+                </div>
+            <?php endif ?>
+            
 
             <?php if ($this->session->userdata('is_lavel1')): ?>
                 <div class="item-product-title btn-po">
-                     <a href="<?php echo base_url('po_order/add/'.$row["id"]) ?>" > + เสนอราคา</a>
+                     <a href="<?php echo base_url('dealer_po/add/'.$row["id"]) ?>" > + เสนอราคา</a>
                     </a>
                 </div>
             <?php endif ?>

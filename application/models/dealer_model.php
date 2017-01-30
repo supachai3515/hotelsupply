@@ -9,7 +9,7 @@ class Dealer_model extends CI_Model {
 
 	    $sql =" SELECT d.* FROM orders  d 
 				INNER JOIN members m ON m.id = customer_id  
-				WHERE m.username ='".$username."' ";
+				WHERE m.username ='".$username."' ORDER BY d.date DESC ";
 		$re = $this->db->query($sql);
 		return $re->result_array();
 

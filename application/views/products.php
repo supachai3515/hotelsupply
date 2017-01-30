@@ -39,35 +39,35 @@
                     </div>
                 </div>
                 <?php endif ?>
-                <div class="row">
+                <?php if (isset($links_pagination)): ?>
+                   <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="toolbar">
                             <div class="pagination-area">
-                                <?php if (isset($links_pagination)): ?>
                                 <?php echo $links_pagination ?>
-                                <?php endif ?>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
+                <?php endif ?>
                 <div style="padding-bottom: 20px;"></div>
                 <div class="row">
                     <div class="tab-content">
                          <?php $this->load->view('template/product-item',$product_list); ?>
                     </div>
                 </div>
+                <?php if (isset($links_pagination)): ?>
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="toolbar">
                             <div class="pagination-area">
-                                <?php if (isset($links_pagination)): ?>
                                 <?php echo $links_pagination ?>
-                                <?php endif ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- pagination-end -->
+                <?php endif ?>
             </div>
         </div>
     </div>

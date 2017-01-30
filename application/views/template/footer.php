@@ -97,7 +97,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="copyright">
-                            <p>Copyright &copy; 2016 <a href="http://www.bboycomputer.com/">BBoyComputer.com</a>. All rights reserved.</p>
+                            <p>Copyright &copy; 2016 <a href="<?php echo $this->config->item('weburl') ?>"><?php echo $this->config->item('sitename') ?></a>. All rights reserved.</p>
                         </div>
                     </div>
                 </div>

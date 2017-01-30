@@ -283,7 +283,7 @@ class Checkout extends CI_Controller {
 		$date1=date_create($result_order['date']);
 		$header_str ='
 					<td>
-				       <h2 class="aligncenter">ขอบคุณสำหรับการสั่งซื้อ (www.bboycomputer.com)</h2>
+				       <h2 class="aligncenter">ขอบคุณสำหรับการสั่งซื้อ ('.$this->config->item('sitename').')</h2>
 				       <p>เลขที่ใบสั่งซื้อ #'.$result_order['id'].'<br/> 
 				        วันที่สั่งซื้อ : '.date_format($date1,"d/m/Y H:i").'</p>
 				    </td>
@@ -312,8 +312,8 @@ class Checkout extends CI_Controller {
 
 			   <tr>
                 <td style="padding: 5px 10px;background-color: #92C7A3;color: #fff;">
-                    sku : '.$value["sku"].'<br/>
-                    <a target="_blank" href="'.base_url("product/".$value["slug"]).'">
+                    SKU : '.$value["sku"].'<br/>
+                    <a target="_blank" href="'.base_url("product/".$value["id"]).'">
                         '.$value["name"].'
                     </a>
                 </td>

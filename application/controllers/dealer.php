@@ -244,9 +244,7 @@ class Dealer extends CI_Controller {
 		print json_encode($data['dealerInfo']);
 
 	}
-
-
-		
+	
 	public function logout()
 	{
 		$this->session->sess_destroy();

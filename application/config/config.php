@@ -27,8 +27,8 @@ $config['no_url_img'] = "http://localhost/hotelsupply/uploads/no_image.jpg";
 
 $config['email_name'] = "hotelsupply";
 //$config['email_owner'] = "bboycomputershop@gmail.com";
-$config['email_owner'] = "hotelsupplyth@gmail.com";
-$config['email_noreply'] = "hotelsupplyth@gmail.com";
+$config['email_owner'] = "hotelsupplyinth@gmail.com";
+$config['email_noreply'] = "hotelsupplyinth@gmail.com";
 $config['pass_mail_noreply'] = "1Q2W3E4R";
 $config['weburl'] = "http://www.hotelsupply.in.th/";
 
