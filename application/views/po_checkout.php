@@ -1,7 +1,5 @@
-
-<!-- static-right-social-area end-->
 <section class="slider-category-area">
-    <div class="container">
+    <div class="container" ng-controller="mainCtrl_po">
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <!-- breadcrumbs start-->
@@ -11,12 +9,17 @@
                             <a href="<?php echo base_url(); ?>">Home</a>
                             <i class="fa fa-angle-right"></i>
                         </li>
-                        <li>ยืนยันการสั่งซื้อ</li>
+                        <li>Dealer</li>
                     </ul>
                 </div>
                 <!-- breadcrumbs end-->
                 <div style="padding-bottom: 30px;"></div>
-                <div ng-if="sumTotal() > 0 " class="commerce">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <?php $this->load->view('template/dealer-menu', $data); ?>
+                    </div>
+                    <div class="col-sm-9">
+                        <div ng-if="sumTotal() > 0 " class="commerce">
                     <div class="cart table-responsive">
                         <table>
                             <thead>
@@ -48,15 +51,15 @@
                                         <span class="price" ng-bind="item.price | currency:'฿':0"></span>
                                     </td>
                                     <td class="product-quantity text-center ">
-                                        <button type="button" ng-click="updateProduct_click_minus(item.rowid)"><i class="fa fa-minus"></i></button>
-                                        <input type="number" step="1" min="0" ng-model="editValue" ng-change="updateProduct_click(item.rowid,editValue)" value="{{item.quantity}}" style="width:50px; height: 30px; text-align:center" />
-                                        <button type="button" ng-click="updateProduct_click_plus(item.rowid)"><i class="fa fa-plus"></i></button>
+                                        <button type="button" ng-click="updateProduct_click_minus(item.id)"><i class="fa fa-minus"></i></button>
+                                        <input type="number" step="1" min="0" ng-model="editValue" ng-change="updateProduct_click(item.id,editValue)" value="{{item.quantity}}" style="width:50px; height: 30px; text-align:center" />
+                                        <button type="button" ng-click="updateProduct_click_plus(item.id)"><i class="fa fa-plus"></i></button>
                                     </td>
                                     <td>
                                         <span class="price" ng-bind="item.price * item.quantity | currency:'฿':0"></span>
                                     </td>
                                     <td>
-                                        <a href="" ng-click="deleteProduct_click(item.rowid)"><i class="fa fa-trash-o"></i></a>
+                                        <a href="" ng-click="deleteProduct_click(item.id)"><i class="fa fa-trash-o"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -93,7 +96,7 @@
                     </div>
 
 
-                     <form class="form-horizontal form-area" ng-submit="ckeckoutSubmit()"  name="form1" method="post" action="<?php echo base_url('checkout/save'); ?>" OnSubmit="return chkSubmit();">
+                     <form class="form-horizontal form-area" ng-submit="ckeckoutSubmit()"  name="form1" method="post" action="<?php echo base_url('po_checkout/save'); ?>" OnSubmit="return chkSubmit();">
                                <h2 class="form-heading"> กรุณากรอกรายละเอียดที่อยู่ เพื่อรับสินค้าจากเว็บไซต์</h2>
                               <fieldset>
 
@@ -216,7 +219,7 @@
                                 <div class="form-content">
                                   <button type="submit" name="Submit">
                                     <span>
-                                      ยืนยันการสั่งซื้อ
+                                      ยืนยันใบเสนอราคา
                                     </span>
                                   </button>
                                 </div>
@@ -244,6 +247,11 @@
         
                             </div>
                 </div> 
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div style="height: 100px;"></div>
+                </div>
             </div>
         </div>
     </div>
