@@ -13,50 +13,56 @@
                     </ul>
                 </div>
                 <!-- breadcrumbs end-->
+               
                 <div style="padding-bottom: 30px;"></div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <p class="text-center">
-                            <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-success-new"></i>
-                              <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <strong class="text-success-new">สั่งซื้อสำเร็จ</strong>
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center">
-                            <?php if ($order['order_status_id']>1): ?>
-                            <span class="fa-stack fa-5x">
-                                  <i class="fa fa-circle fa-stack-2x text-success-new"></i>
-                                  <i class="fa fa-money fa-stack-1x fa-inverse"></i>
-                                </span>
-                            <strong class="text-success-new">ชำระเงินสำเร็จ</strong>
+     
+                    <div class="line hidden-xs"></div>
+                    <div class="col-sm-10 col-sm-offset-2 text-center">
+                    
+                        <div class="col-sm-2">
+                            <span class="glyphicon fa fa-file-o glyphicon-active"></span>
+                            <h4>ขอใบเสนอราคาสำเร็จ</h4>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <?php if ($order['po_order_status_id']>1): ?>
+                                <span class="glyphicon fa fa-check-circle-o glyphicon-active"></span>
+                                <h4>ยืนยันใบเสนอราคาสำเร็จ</h4>
                             <?php else: ?>
-                            <span class="fa-stack fa-5x">
-                                  <i class="fa fa-circle fa-stack-2x"></i>
-                                  <i class="fa fa-money fa-stack-1x fa-inverse" style="color: #FFF;"></i>
-                                </span>
-                            <strong class="">รอการชำระเงิน</strong>
+                                <span class="glyphicon fa fa-check-circle-o"></span>
+                                <h4>รอการตวจสอบ</h4>
                             <?php endif ?>
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="text-center">
-                            <?php if ($order['order_status_id'] == 4): ?>
-                            <span class="fa-stack fa-5x">
-                                  <i class="fa fa-circle fa-stack-2x text-success-new"></i>
-                                  <i class="fa fa-truck fa-stack-1x fa-inverse"></i>
-                            </span>
-                            <strong class="text-success-new">จัดส่งเรียบร้อย</strong>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <?php if ($order['is_invoice']): ?>
+                                <span class="glyphicon fa fa-file-text-o glyphicon-active"></span>
+                                <h4>ออกใบสั่งซื้อสำเร็จ</h4>
                             <?php else: ?>
-                            <span class="fa-stack fa-5x">
-                                  <i class="fa fa-circle fa-stack-2x"></i>
-                                  <i class="fa fa-truck fa-stack-1x fa-inverse" style="color: #FFF;"></i>
-                            </span>
-                            <strong class="">รอการจัดส่ง</strong>
+                                <span class="glyphicon fa fa-file-text-o"></span>
+                                <h4>รอออกใบสั่งซื้อ</h4>
                             <?php endif ?>
-                        </p>
+                        </div>
+                        <div class="col-sm-2">
+                            <?php if ($order['po_order_status_id']>4): ?>
+                                <span class="glyphicon fa fa-money glyphicon-active"></span>
+                                <h4>ชำระเงินเรียบร้อย</h4>
+                            <?php else: ?>
+                                <span class="glyphicon fa fa-money"></span>
+                                <h4>รอการชำระเงิน </h4>
+                            <?php endif ?>
+                        </div>
+                       
+                        <div class="col-sm-2">
+                            <?php if ($order['po_order_status_id']==7): ?>
+                                <span class="glyphicon glyphicon-send glyphicon-active"></span>
+                                <h4>จัดสั่งแล้ว</h4>
+                            <?php else: ?>
+                                <span class="glyphicon glyphicon-send"></span>
+                                <h4>รอการจัดส่ง</h4>
+                            <?php endif ?>
+                        </div>
                     </div>
                 </div>
                 <div style="padding-bottom: 30px;"></div>
@@ -65,19 +71,34 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
-                                เลขที่ใบสั่งซื้อ #<?php echo $order['id']; ?>
-                            </h3>
+                                <?php if ($order['is_invoice']): ?>
+                                    เลขที่ใบสั่งซื้อ #<?php echo $order['invoice_docno']; ?>
+                                <?php else: ?>
+                                   เลขที่ใบเสนอราคา #<?php echo $order['id']; ?>
+                                <?php endif ?>
+                                </h3>
                             </div>
                             <div class="panel-body">
-                                <strong>สั่งเมื่อวันที่ <?php echo $order['date']?></strong>
-                                <br/>
-                                <span>กรุณาชำระเงินภายใน 3 วัน </span>
-                                <br/>
-                                <br/>
-                                <a target="_blank" class="btn btn-default" href="<?php echo base_url('invoice/'.$order['ref_id']) ?>" role="button">
-                   
-                                 ดูใบสั่งซื้อ
-                                </a>
+                                <?php if ($order['is_invoice']): ?>
+                                    <strong>ขอใบเสนอราคาวันที่ <?php echo $order['date']?></strong>
+                                    <br/>
+                                    <strong>ออกใบสั่งซื้อวันที่ <?php echo $order['invoice_date']?></strong>
+                                    <br/>
+                                    <span>กรุณาชำระเงินภายใน 3 วัน </span>
+                                    <br/>
+                                    <br/>
+                                   <a target="_blank" class="btn btn-default" href="<?php echo base_url('po_invoice/'.$order['ref_id']) ?>" role="button">
+                                     ดูใบสั่งซื้อ
+                                    </a>
+                                <?php else: ?>
+                                    <strong>ขอใบเสนอราคาวันที่ <?php echo $order['date']?></strong>
+                                    <br/>
+                                    <br/>
+                                    <a target="_blank" class="btn btn-default" href="<?php echo base_url('po_invoice/'.$order['ref_id']) ?>" role="button">
+                                     ขอใบเสนอราคาวันที่
+                                    </a>
+                                <?php endif ?>
+                                
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -130,7 +151,7 @@
                         <?php if($order['customer_id'] != ""){ ?>
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>สมาชิก Dealer</h4>
+                                <h4 class="text-center">สมาชิก Dealer</h4>
                             </div>
                         </div>
                         <?php } ?>

@@ -64,184 +64,175 @@ class Po_checkout extends CI_Controller {
 
 	public function save()
 	{
-
-	    $name =  $this->input->post('txtName');
-	    $address =  $this->input->post('txtAddress');
-	    $tel =  $this->input->post('txtTel');
-	    $email =  $this->input->post('txtEmail');	    
-	    $shipping  =  $this->input->post('txtTransport');
-
-	    $tax_id =  "";
-	    $tax_address =  "";
-	    $tax_company = "";
-
-	    $is_tax =  $this->input->post('purchase');
-	    if( $is_tax =="on"){
-	    	$is_tax =1 ;
-	    	$tax_id =  $this->input->post('IDCARD');
-	    	$tax_address =  $this->input->post('purchase_address');
-	    	$tax_company =  $this->input->post('company');
-	    }
-	    else { $is_tax = 0 ;}
-
-
-	    $customer_id = "";
-
-	    if($this->session->userdata('is_logged_in')) {
-	    	$customer_id = $this->session->userdata('id');
-
-	    }
-
-		$order_status_id  = "1";
-		$quantity  = 0;
-		$vat  = 0;
-		$discount  = 0;
-		$total  = 0;
-
-
 		if($this->session->userdata('is_logged_in')) {
 				$dealerInfo  =  $this->dealer_model->get_dealerInfo($this->session->userdata('username'));
 				$sql1 ="SELECT qty, product_id, price, total FROM po_cart WHERE member_id ='".$dealerInfo['id']."' ";
 				$query1 = $this->db->query($sql1);
 		        $row1 = $query1->result_array();
 
-		    foreach ($row1 as $items) {
+		    if(count($row1) > 0)
+		    {
+			    $name =  $this->input->post('txtName');
+			    $address =  $this->input->post('txtAddress');
+			    $tel =  $this->input->post('txtTel');
+			    $email =  $this->input->post('txtEmail');	    
+			    $shipping  =  $this->input->post('txtTransport');
 
-		    	$quantity  = $quantity + $items['qty'];
-				$total  = $total + ($items['price']* $items['qty']);
-			}
-		}
+			    $tax_id =  "";
+			    $tax_address =  "";
+			    $tax_company = "";
 
-		if($is_tax ==1)
-		{
-			$vat  = ($total * 7) / 100;
-		}
-
-		$total  = ($total + $vat) + 90;
-
-
-	    $this->db->trans_begin();
-	    $ref_order_id = md5("hotelsupply".date("YmdHis")."hotelsupply_gen_order_id");
-	    $order_id="";
-	    if($quantity == 0){
-	    	redirect('dealer_po','refresh');
-	    }
-
-	    date_default_timezone_set("Asia/Bangkok");
-        $data = array(
-        	'date' => date("Y-m-d H:i:s"),
-			'name' => $name ,
-			'address' =>  $address,
-			'tel' =>  $tel ,
-			'email' =>  $email ,
-			'tax_id' =>   $tax_id ,
-			'tax_address' =>   $tax_address,
-			'tax_company' =>   $tax_company ,
-			'shipping' =>   $shipping ,
-			'shipping_charge' => 90 ,
-			'is_tax' =>   $is_tax ,
-			'customer_id' =>   $customer_id ,
-			'po_order_status_id' =>   $order_status_id ,
-			'quantity' =>   $quantity ,
-			'vat' =>   $vat ,
-			'discount' =>   $discount ,
-			'total' =>   $total,
-			'ref_id' =>   $ref_order_id ,
-            );
-
-		$this->db->insert('po_orders', $data);
-		$order_id = $this->db->insert_id();
-		$linenumber =1;
+			    $is_tax =  $this->input->post('purchase');
+			    if( $is_tax =="on"){
+			    	$is_tax =1 ;
+			    	$tax_id =  $this->input->post('IDCARD');
+			    	$tax_address =  $this->input->post('purchase_address');
+			    	$tax_company =  $this->input->post('company');
+			    }
+			    else { $is_tax = 0 ;}
 
 
+			    $customer_id = "";
 
-		if($this->session->userdata('is_logged_in')) {
-				$dealerInfo  =  $this->dealer_model->get_dealerInfo($this->session->userdata('username'));
-				$sql1 ="SELECT qty, product_id, price, total FROM po_cart WHERE member_id ='".$dealerInfo['id']."' ";
-				$query1 = $this->db->query($sql1);
-		        $row1 = $query1->result_array();
+			    if($this->session->userdata('is_logged_in')) {
+			    	$customer_id = $this->session->userdata('id');
 
-		    foreach ($row1 as $items)
-			{
+			    }
 
-				$total_detail  = $items['price'] * $items['qty'];
-				$vat_detail  = 0;
+				$order_status_id  = "1";
+				$quantity  = 0;
+				$vat  = 0;
+				$discount  = 0;
+				$total  = 0;
 
-				if($is_tax == 1)
+			    foreach ($row1 as $items) {
+
+			    	$quantity  = $quantity + $items['qty'];
+					$total  = $total + ($items['price']* $items['qty']);
+				}
+				
+
+				if($is_tax ==1)
 				{
-					$vat_detail  = ($total_detail * 7) / 100;
-					
+					$vat  = ($total * 7) / 100;
 				}
 
-				$total_detail  = $total_detail + $vat_detail;
+				$total  = ($total + $vat) + 90;
 
-		    	$data_detail = array(
-			    	'po_order_id' =>   $order_id ,
-					'product_id' =>   $items['product_id'],
-					'linenumber' =>   $linenumber,				
-					'quantity' =>   $items['qty'],
-					'price' =>   $items['price'] ,
-					'discount' =>   0 ,
-					'vat' =>   $vat_detail ,
-					'total' =>   $total_detail 
-	            );
 
-		    	$this->db->insert('po_order_detail', $data_detail); 
-		    	$linenumber++;
-			}
-		}
+			    $this->db->trans_begin();
+			    $ref_order_id = md5("hotelsupply".date("YmdHis")."hotelsupply_gen_order_id");
+			    $order_id="";
+			    if($quantity == 0){
+			    	redirect('dealer_po','refresh');
+			    }
 
-		if ($this->db->trans_status() === FALSE)
-		{
-		    $this->db->trans_rollback();
-		    redirect('dealer_po','refresh');
-		}
-		else
-		{
-		    $this->db->trans_commit();
+			    date_default_timezone_set("Asia/Bangkok");
+		        $data = array(
+		        	'date' => date("Y-m-d H:i:s"),
+					'name' => $name ,
+					'address' =>  $address,
+					'tel' =>  $tel ,
+					'email' =>  $email ,
+					'tax_id' =>   $tax_id ,
+					'tax_address' =>   $tax_address,
+					'tax_company' =>   $tax_company ,
+					'shipping' =>   $shipping ,
+					'shipping_charge' => 90 ,
+					'is_tax' =>   $is_tax ,
+					'customer_id' =>   $customer_id ,
+					'po_order_status_id' =>   $order_status_id ,
+					'quantity' =>   $quantity ,
+					'vat' =>   $vat ,
+					'discount' =>   $discount ,
+					'total' =>   $total,
+					'ref_id' =>   $ref_order_id ,
+		            );
 
-		    if($this->session->userdata('is_logged_in')){
-				$dealerInfo  =  $this->dealer_model->get_dealerInfo($this->session->userdata('username'));
-				$this->db->delete('po_cart', array('member_id' => $dealerInfo['id'])); 
+				$this->db->insert('po_orders', $data);
+				$order_id = $this->db->insert_id();
+				$linenumber =1;
+
+			    foreach ($row1 as $items)
+				{
+					$total_detail  = $items['price'] * $items['qty'];
+					$vat_detail  = 0;
+
+					if($is_tax == 1)
+					{
+						$vat_detail  = ($total_detail * 7) / 100;
+						
+					}
+
+					$total_detail  = $total_detail + $vat_detail;
+
+			    	$data_detail = array(
+				    	'po_order_id' =>   $order_id ,
+						'product_id' =>   $items['product_id'],
+						'linenumber' =>   $linenumber,				
+						'quantity' =>   $items['qty'],
+						'price' =>   $items['price'] ,
+						'discount' =>   0 ,
+						'vat' =>   $vat_detail ,
+						'total' =>   $total_detail 
+		            );
+
+			    	$this->db->insert('po_order_detail', $data_detail); 
+			    	$linenumber++;
+				}
+				
+				if ($this->db->trans_status() === FALSE)
+				{
+				    $this->db->trans_rollback();
+				    redirect('dealer_po','refresh');
+				}
+				else
+				{
+				    $this->db->trans_commit();
+
+				    if($this->session->userdata('is_logged_in')){
+						$dealerInfo  =  $this->dealer_model->get_dealerInfo($this->session->userdata('username'));
+						$this->db->delete('po_cart', array('member_id' => $dealerInfo['id'])); 
+				    }
+
+				    //sendmail
+				    $email_config = Array(
+			            'protocol'  => 'smtp',
+			            'smtp_host' => 'ssl://smtp.googlemail.com',
+			            'smtp_port' => '465',
+			            'smtp_user' => $this->config->item('email_noreply'),
+			            'smtp_pass' => $this->config->item('pass_mail_noreply'),
+			            'mailtype'  => 'html',
+			            'starttls'  => true,
+			            'newline'   => "\r\n"
+			        );
+
+			        $this->load->library('email', $email_config);
+			        $sub ="ใบเสนอราคา #".$order_id;
+
+			        $this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
+			        $this->email->to($email);
+			        $this->email->subject($sub);
+			        $this->email->message($this->sendmail_order($order_id));
+			        if($this->email->send())
+				     {
+				     	$this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
+			        	$this->email->to($this->config->item('email_owner'));
+			        	$this->email->subject('ได้รับใบเสนอราคา '.$sub);
+			        	$this->email->message($this->sendmail_order($order_id));
+			         	$this->email->send();
+				      	redirect('po_status/'.$ref_order_id );
+				     }
+
+				    else
+				    {
+				    	redirect('po_status/'.$ref_order_id );
+				       //show_error($this->email->print_debugger());
+				    }
+		    
+				}
 		    }
-
-		    //sendmail
-		    $email_config = Array(
-	            'protocol'  => 'smtp',
-	            'smtp_host' => 'ssl://smtp.googlemail.com',
-	            'smtp_port' => '465',
-	            'smtp_user' => $this->config->item('email_noreply'),
-	            'smtp_pass' => $this->config->item('pass_mail_noreply'),
-	            'mailtype'  => 'html',
-	            'starttls'  => true,
-	            'newline'   => "\r\n"
-	        );
-
-	        $this->load->library('email', $email_config);
-	        $sub ="ใบเสนอราคา #".$order_id;
-
-	        $this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
-	        $this->email->to($email);
-	        $this->email->subject($sub);
-	        $this->email->message($this->sendmail_order($order_id));
-	        if($this->email->send())
-		     {
-		     	$this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
-	        	$this->email->to($this->config->item('email_owner'));
-	        	$this->email->subject('ได้รับใบเสนอราคา '.$sub);
-	        	$this->email->message($this->sendmail_order($order_id));
-	         	$this->email->send();
-		      	redirect('po_status/'.$ref_order_id );
-		     }
-
-		    else
-		    {
-		    	redirect('po_status/'.$ref_order_id );
-		       //show_error($this->email->print_debugger());
-		    }
-    
 		}
-
 	}
 
 	function sendmail_order($orderId)
