@@ -59,162 +59,169 @@ class Checkout extends CI_Controller {
 
 	public function save()
 	{
+		if(count($this->cart->contents())>0){
+			$name =  $this->input->post('txtName');
+		    $address =  $this->input->post('txtAddress');
+		    $tel =  $this->input->post('txtTel');
+		    $email =  $this->input->post('txtEmail');	    
+		    $shipping  =  $this->input->post('txtTransport');
 
-	    $name =  $this->input->post('txtName');
-	    $address =  $this->input->post('txtAddress');
-	    $tel =  $this->input->post('txtTel');
-	    $email =  $this->input->post('txtEmail');	    
-	    $shipping  =  $this->input->post('txtTransport');
+		    $tax_id =  "";
+		    $tax_address =  "";
+		    $tax_company = "";
 
-	    $tax_id =  "";
-	    $tax_address =  "";
-	    $tax_company = "";
-
-	    $is_tax =  $this->input->post('purchase');
-	    if( $is_tax =="on"){
-	    	$is_tax =1 ;
-	    	$tax_id =  $this->input->post('IDCARD');
-	    	$tax_address =  $this->input->post('purchase_address');
-	    	$tax_company =  $this->input->post('company');
-	    }
-	    else{ $is_tax = 0 ;}
-
-
-	    $customer_id = "";
-
-	    if($this->session->userdata('is_logged_in')) {
-	    	$customer_id = $this->session->userdata('id');
-
-	    }
-
-		$order_status_id  = "1";
-		$quantity  = 0;
-		$vat  = 0;
-		$discount  = 0;
-		$total  = 0;
-
-	    foreach ($this->cart->contents() as $items) {
-
-	    	$quantity  = $quantity + $items['qty'];
-			$total  = $total + ($items['price']* $items['qty']);
-		}
-
-		if($is_tax ==1)
-		{
-			$vat  = ($total * 7) / 100;
-		}
-
-		$total  = ($total + $vat) + 90;
+		    $is_tax =  $this->input->post('purchase');
+		    if( $is_tax =="on"){
+		    	$is_tax =1 ;
+		    	$tax_id =  $this->input->post('IDCARD');
+		    	$tax_address =  $this->input->post('purchase_address');
+		    	$tax_company =  $this->input->post('company');
+		    }
+		    else{ $is_tax = 0 ;}
 
 
-	    $this->db->trans_begin();
-	    $ref_order_id = md5("bboycomputer".date("YmdHis")."bboycomputer_gen_order_id");
-	    $order_id="";
-	    if($quantity == 0){
-	    	redirect('cart','refresh');
-	    }
+		    $customer_id = "";
 
-	    date_default_timezone_set("Asia/Bangkok");
-        $data = array(
-        	'date' => date("Y-m-d H:i:s"),
-			'name' => $name ,
-			'address' =>  $address,
-			'tel' =>  $tel ,
-			'email' =>  $email ,
-			'tax_id' =>   $tax_id ,
-			'tax_address' =>   $tax_address,
-			'tax_company' =>   $tax_company ,
-			'shipping' =>   $shipping ,
-			'shipping_charge' => 90 ,
-			'is_tax' =>   $is_tax ,
-			'customer_id' =>   $customer_id ,
-			'order_status_id' =>   $order_status_id ,
-			'quantity' =>   $quantity ,
-			'vat' =>   $vat ,
-			'discount' =>   $discount ,
-			'total' =>   $total,
-			'ref_id' =>   $ref_order_id ,
-            );
+		    if($this->session->userdata('is_logged_in')) {
+		    	$customer_id = $this->session->userdata('id');
 
-		$this->db->insert('orders', $data);
-		$order_id = $this->db->insert_id();
-		$linenumber =1;
+		    }
 
-		foreach ($this->cart->contents() as $items)
-		{
+			$order_status_id  = "1";
+			$quantity  = 0;
+			$vat  = 0;
+			$discount  = 0;
+			$total  = 0;
 
-			$total_detail  = $items['price'] * $items['qty'];
-			$vat_detail  = 0;
+		    foreach ($this->cart->contents() as $items) {
 
-			if($is_tax == 1)
-			{
-				$vat_detail  = ($total_detail * 7) / 100;
-				
+		    	$quantity  = $quantity + $items['qty'];
+				$total  = $total + ($items['price']* $items['qty']);
 			}
 
-			$total_detail  = $total_detail + $vat_detail;
+			if($is_tax ==1)
+			{
+				$vat  = ($total * 7) / 100;
+			}
 
-	    	$data_detail = array(
-		    	'order_id' =>   $order_id ,
-				'product_id' =>   $items['id'],
-				'linenumber' =>   $linenumber,				
-				'quantity' =>   $items['qty'],
-				'price' =>   $items['price'] ,
-				'discount' =>   0 ,
-				'vat' =>   $vat_detail ,
-				'total' =>   $total_detail 
-            );
+			$total  = ($total + $vat) + 90;
 
-	    	$this->db->insert('order_detail', $data_detail); 
-	    	$linenumber++;
-		}
 
-		if ($this->db->trans_status() === FALSE)
-		{
-		    $this->db->trans_rollback();
-		    redirect('cart','refresh');
-		}
-		else
-		{
-		    $this->db->trans_commit();
-		    $this->cart->destroy();
-
-		    //sendmail
-		    $email_config = Array(
-	            'protocol'  => 'smtp',
-	            'smtp_host' => 'ssl://smtp.googlemail.com',
-	            'smtp_port' => '465',
-	            'smtp_user' => $this->config->item('email_noreply'),
-	            'smtp_pass' => $this->config->item('pass_mail_noreply'),
-	            'mailtype'  => 'html',
-	            'starttls'  => true,
-	            'newline'   => "\r\n"
-	        );
-
-	        $this->load->library('email', $email_config);
-	        $sub ="เลขที่ใบสั่งซื้อ #".$order_id;
-
-	        $this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
-	        $this->email->to($email);
-	        $this->email->subject($sub);
-	        $this->email->message($this->sendmail_order($order_id));
-	        if($this->email->send())
-		     {
-		     	$this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
-	        	$this->email->to($this->config->item('email_owner'));
-	        	$this->email->subject('ได้รับการสั่งซื้อ '.$sub);
-	        	$this->email->message($this->sendmail_order($order_id));
-	         	$this->email->send();
-		      	redirect('status/'.$ref_order_id );
-		     }
-
-		    else
-		    {
-		    	redirect('status/'.$ref_order_id );
-		       //show_error($this->email->print_debugger());
+		    $this->db->trans_begin();
+		    $ref_order_id = md5("bboycomputer".date("YmdHis")."bboycomputer_gen_order_id");
+		    $order_id="";
+		    if($quantity == 0){
+		    	redirect('cart','refresh');
 		    }
-    
+
+		    date_default_timezone_set("Asia/Bangkok");
+	        $data = array(
+	        	'date' => date("Y-m-d H:i:s"),
+				'name' => $name ,
+				'address' =>  $address,
+				'tel' =>  $tel ,
+				'email' =>  $email ,
+				'tax_id' =>   $tax_id ,
+				'tax_address' =>   $tax_address,
+				'tax_company' =>   $tax_company ,
+				'shipping' =>   $shipping ,
+				'shipping_charge' => 90 ,
+				'is_tax' =>   $is_tax ,
+				'customer_id' =>   $customer_id ,
+				'order_status_id' =>   $order_status_id ,
+				'quantity' =>   $quantity ,
+				'vat' =>   $vat ,
+				'discount' =>   $discount ,
+				'total' =>   $total,
+				'ref_id' =>   $ref_order_id ,
+	            );
+
+			$this->db->insert('orders', $data);
+			$order_id = $this->db->insert_id();
+			$linenumber =1;
+
+			foreach ($this->cart->contents() as $items)
+			{
+
+				$total_detail  = $items['price'] * $items['qty'];
+				$vat_detail  = 0;
+
+				if($is_tax == 1)
+				{
+					$vat_detail  = ($total_detail * 7) / 100;
+					
+				}
+
+				$total_detail  = $total_detail + $vat_detail;
+
+		    	$data_detail = array(
+			    	'order_id' =>   $order_id ,
+					'product_id' =>   $items['id'],
+					'linenumber' =>   $linenumber,				
+					'quantity' =>   $items['qty'],
+					'price' =>   $items['price'] ,
+					'discount' =>   0 ,
+					'vat' =>   $vat_detail ,
+					'total' =>   $total_detail 
+	            );
+
+		    	$this->db->insert('order_detail', $data_detail); 
+		    	$linenumber++;
+			}
+
+			if ($this->db->trans_status() === FALSE)
+			{
+			    $this->db->trans_rollback();
+			    redirect('cart','refresh');
+			}
+			else
+			{
+			    $this->db->trans_commit();
+			    $this->cart->destroy();
+
+			    //sendmail
+			    $email_config = Array(
+		            'protocol'  => 'smtp',
+		            'smtp_host' => 'ssl://smtp.googlemail.com',
+		            'smtp_port' => '465',
+		            'smtp_user' => $this->config->item('email_noreply'),
+		            'smtp_pass' => $this->config->item('pass_mail_noreply'),
+		            'mailtype'  => 'html',
+		            'starttls'  => true,
+		            'newline'   => "\r\n"
+		        );
+
+		        $this->load->library('email', $email_config);
+		        $sub ="เลขที่ใบสั่งซื้อ #".$order_id;
+
+		        $this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
+		        $this->email->to($email);
+		        $this->email->subject($sub);
+		        $this->email->message($this->sendmail_order($order_id));
+		        if($this->email->send())
+			     {
+			     	$this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
+		        	$this->email->to($this->config->item('email_owner'));
+		        	$this->email->subject('ได้รับการสั่งซื้อ '.$sub);
+		        	$this->email->message($this->sendmail_order($order_id));
+		         	$this->email->send();
+			      	redirect('status/'.$ref_order_id );
+			     }
+
+			    else
+			    {
+			    	redirect('status/'.$ref_order_id );
+			       //show_error($this->email->print_debugger());
+			    }
+	    
+			}
+
 		}
+		else{
+			redirect('products','refresh');
+		}
+
+	    
 
 	}
 

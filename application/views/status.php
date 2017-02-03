@@ -15,7 +15,19 @@
                 <!-- breadcrumbs end-->
                 <div style="padding-bottom: 30px;"></div>
                 <div class="row">
-                    <div class="col-md-4">
+                <?php if ($order['order_status_id'] == 5 || $order['order_status_id'] == 6): ?>
+                     <div class="col-md-12">
+                        <p class="text-center">
+                            <span class="fa-stack fa-5x">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa fa-ban fa-stack-1x fa-inverse"></i>
+                            </span>
+                            <strong class=""><?php echo $order['status_name']; ?></strong>
+                        </p>
+                    </div>
+                   
+                <?php else: ?>
+                     <div class="col-md-4">
                         <p class="text-center">
                             <span class="fa-stack fa-5x">
                               <i class="fa fa-circle fa-stack-2x text-success-new"></i>
@@ -58,6 +70,9 @@
                             <?php endif ?>
                         </p>
                     </div>
+                    
+                <?php endif ?>
+                   
                 </div>
                 <div style="padding-bottom: 30px;"></div>
                 <div class="row">

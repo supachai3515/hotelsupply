@@ -13,56 +13,57 @@
                     </ul>
                 </div>
                 <!-- breadcrumbs end-->
-               
                 <div style="padding-bottom: 30px;"></div>
                 <div class="row">
-     
                     <div class="line hidden-xs"></div>
                     <div class="col-sm-10 col-sm-offset-2 text-center">
-                    
+                        <?php if ($order['po_order_status_id'] == 8 || $order['po_order_status_id'] == 9): ?>
+                        <div class="col-sm-10">
+                            <span class="glyphicon-status fa fa-ban"></span>
+                            <h4><?php echo $order['status_name']; ?></h4>
+                        </div>
+                        <?php else: ?>
                         <div class="col-sm-2">
-                            <span class="glyphicon fa fa-file-o glyphicon-active"></span>
+                            <span class="glyphicon-status fa fa-file-o glyphicon-active"></span>
                             <h4>ขอใบเสนอราคาสำเร็จ</h4>
                         </div>
-                        
                         <div class="col-sm-2">
                             <?php if ($order['po_order_status_id']>1): ?>
-                                <span class="glyphicon fa fa-check-circle-o glyphicon-active"></span>
-                                <h4>ยืนยันใบเสนอราคาสำเร็จ</h4>
+                            <span class="glyphicon-status fa fa-check-circle-o glyphicon-active"></span>
+                            <h4>ยืนยันใบเสนอราคาสำเร็จ</h4>
                             <?php else: ?>
-                                <span class="glyphicon fa fa-check-circle-o"></span>
-                                <h4>รอการตวจสอบ</h4>
+                            <span class="glyphicon-status fa fa-check-circle-o"></span>
+                            <h4>รอการตวจสอบ</h4>
                             <?php endif ?>
                         </div>
-                        
                         <div class="col-sm-2">
                             <?php if ($order['is_invoice']): ?>
-                                <span class="glyphicon fa fa-file-text-o glyphicon-active"></span>
-                                <h4>ออกใบสั่งซื้อสำเร็จ</h4>
+                            <span class="glyphicon-status fa fa-file-text-o glyphicon-active"></span>
+                            <h4>ออกใบสั่งซื้อสำเร็จ</h4>
                             <?php else: ?>
-                                <span class="glyphicon fa fa-file-text-o"></span>
-                                <h4>รอออกใบสั่งซื้อ</h4>
+                            <span class="glyphicon-status fa fa-file-text-o"></span>
+                            <h4>รอออกใบสั่งซื้อ</h4>
                             <?php endif ?>
                         </div>
                         <div class="col-sm-2">
                             <?php if ($order['po_order_status_id']>4): ?>
-                                <span class="glyphicon fa fa-money glyphicon-active"></span>
-                                <h4>ชำระเงินเรียบร้อย</h4>
+                            <span class="glyphicon-status fa fa-money glyphicon-active"></span>
+                            <h4>ชำระเงินเรียบร้อย</h4>
                             <?php else: ?>
-                                <span class="glyphicon fa fa-money"></span>
-                                <h4>รอการชำระเงิน </h4>
+                            <span class="glyphicon-status fa fa-money"></span>
+                            <h4>รอการชำระเงิน </h4>
                             <?php endif ?>
                         </div>
-                       
                         <div class="col-sm-2">
                             <?php if ($order['po_order_status_id']==7): ?>
-                                <span class="glyphicon glyphicon-send glyphicon-active"></span>
-                                <h4>จัดสั่งแล้ว</h4>
+                            <span class="glyphicon-status glyphicon-send glyphicon-active"></span>
+                            <h4>จัดสั่งแล้ว</h4>
                             <?php else: ?>
-                                <span class="glyphicon glyphicon-send"></span>
-                                <h4>รอการจัดส่ง</h4>
+                            <span class="glyphicon-status glyphicon-send"></span>
+                            <h4>รอการจัดส่ง</h4>
                             <?php endif ?>
                         </div>
+                        <?php endif ?>
                     </div>
                 </div>
                 <div style="padding-bottom: 30px;"></div>
@@ -80,25 +81,24 @@
                             </div>
                             <div class="panel-body">
                                 <?php if ($order['is_invoice']): ?>
-                                    <strong>ขอใบเสนอราคาวันที่ <?php echo $order['date']?></strong>
-                                    <br/>
-                                    <strong>ออกใบสั่งซื้อวันที่ <?php echo $order['invoice_date']?></strong>
-                                    <br/>
-                                    <span>กรุณาชำระเงินภายใน 3 วัน </span>
-                                    <br/>
-                                    <br/>
-                                   <a target="_blank" class="btn btn-default" href="<?php echo base_url('po_invoice/'.$order['ref_id']) ?>" role="button">
+                                <strong>ขอใบเสนอราคาวันที่ <?php echo $order['date']?></strong>
+                                <br/>
+                                <strong>ออกใบสั่งซื้อวันที่ <?php echo $order['invoice_date']?></strong>
+                                <br/>
+                                <span>กรุณาชำระเงินภายใน 3 วัน </span>
+                                <br/>
+                                <br/>
+                                <a target="_blank" class="btn btn-default" href="<?php echo base_url('po_invoice/'.$order['ref_id']) ?>" role="button">
                                      ดูใบสั่งซื้อ
                                     </a>
                                 <?php else: ?>
-                                    <strong>ขอใบเสนอราคาวันที่ <?php echo $order['date']?></strong>
-                                    <br/>
-                                    <br/>
-                                    <a target="_blank" class="btn btn-default" href="<?php echo base_url('po_invoice/'.$order['ref_id']) ?>" role="button">
-                                     ขอใบเสนอราคาวันที่
+                                <strong>ขอใบเสนอราคาวันที่ <?php echo $order['date']?></strong>
+                                <br/>
+                                <br/>
+                                <a target="_blank" class="btn btn-default" href="<?php echo base_url('po_invoice/'.$order['ref_id']) ?>" role="button">
+                                     ดูใบเสนอราคา
                                     </a>
                                 <?php endif ?>
-                                
                             </div>
                         </div>
                         <div class="panel panel-default">
@@ -207,9 +207,8 @@
                                                 <?php if ($order["is_tax"]): ?>
                                                 <td colspan="2" rowspan="4"></td>
                                                 <?php else: ?>
-                                                 <td colspan="2" rowspan="3"></td>
+                                                <td colspan="2" rowspan="3"></td>
                                                 <?php endif ?>
-
                                                 <td colspan="2">ราคารวมสินค้า</td>
                                                 <td colspan="1">
                                                     <span class="price">

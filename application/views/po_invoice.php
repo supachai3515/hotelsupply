@@ -23,7 +23,7 @@
 
             	<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             		<img src="<?php echo base_url('theme');?>/img/logo/logo.png" style="width: 200px"/>
-            		<h4>ร้าน B-Boy Computer</h4>
+            		<h4>Hotel Supply</h4>
 			  		 พันทิพธ์พลาซ่า งามวงศ์วาน ชั้น 5 ติดศูนย์อาหาร<br>
 			  		086-555-6039 (Truemove-H) , 084-570-5654 (AIS)<br>
 			  		10.30น-20.00น<br>

@@ -1,11 +1,11 @@
 <div id="page-wrapper" ng-app="myApp">
     <div class="container-fluid" ng-controller="myCtrl">
         <div class="page-header">
-            <?php if ($po_orders_data['is_invoice']== 0): ?>
+        <?php if ($po_orders_data['is_invoice']== 0): ?>
             <h1>ใบเสนอราคา <strong>#<?php echo $po_orders_data['id'] ?></h1>
-            <?php else: ?>
-            <h1>ใบสั่งซื้อสินค้า <strong>#<?php echo $po_orders_data['id'] ?></h1>
-            <?php endif ?>
+        <?php else: ?>
+            <h1>ใบสั่งซื้อสินค้า <strong>#<?php echo $po_orders_data['invoice_docno'] ?></h1>
+        <?php endif ?>
         </div>
         <div style="padding-top:30px;"></div>
         <div class="row">
@@ -36,16 +36,16 @@
                 <br/>
             </div>
             <div class="col-md-6">
-                <form action="<?php echo base_url('po_orders/update_tracking/'.$po_orders_data['id']); ?>" method="POST" class="form-inline" role="form">
+            <?php if ($po_orders_data['is_invoice']== 1): ?>
+               <form action="<?php echo base_url('po_orders/update_tracking/'.$po_orders_data['id']); ?>" method="POST" class="form-inline" role="form">
                     <div class="form-group">
                         <label class="sr-only" for="">tracking</label>
-                        <input type="text" class="form-control" id="tracking" name="tracking" <?php if (isset($po_orders_data[ 'trackpost'])): ?> value="
-                        <?php echo $po_orders_data['trackpost']; ?>"
-                        <?php endif ?> placeholder="tracking number">
+                        <input type="text" class="form-control" id="tracking" name="tracking" <?php if (isset($po_orders_data[ 'trackpost'])): ?> value="<?php echo $po_orders_data['trackpost']; ?>"<?php endif ?> placeholder="tracking number">
                     </div>
                     <button type="submit" class="btn btn-primary">ส่งรหัส tracking</button>
                 </form>
-                <br/>
+                <br/> 
+            <?php endif ?>
             </div>
         </div>
         <div class="row">
@@ -77,7 +77,12 @@
                                             <?php endif ?>
                                         </td>
                                         <td>
-                                            <span>เลขที่ใบเสร็จ : <strong>#<?php echo $po_orders_data['id'] ?></strong></span>
+                                            <?php if ($po_orders_data['is_invoice']== 0): ?>
+                                                <span>เลขที่ใบเสนอราคา : <strong>#<?php echo $po_orders_data['id'] ?></strong></span>
+                                            <?php else: ?>
+                                                <span>เลขที่ใบสั่งซื้อ : <strong>#<?php echo $po_orders_data['invoice_docno'] ?></strong></span>
+                                            <?php endif ?>
+                                            
                                             <br/>
                                             <span>โดย : <strong><?php echo $po_orders_data['name'] ?></strong></span>
                                             <br/>
@@ -105,11 +110,11 @@
                                         </form>
 
                                             <?php if ($po_orders_data['is_invoice']== 0): ?>
-                                                <a target="_blank" class="btn btn-xs btn-default" href="<?php echo  $this->config->item('weburl').'/quotation/'.$po_orders_data['ref_id'] ?>" role="button">    
+                                                <a target="_blank" class="btn btn-xs btn-default" href="<?php echo  $this->config->item('weburl').'po_invoice/'.$po_orders_data['ref_id'] ?>" role="button">    
                                                      ใบเสนอราคา
                                                     </a>
                                             <?php else: ?>
-                                                <a target="_blank" class="btn btn-xs btn-success" href="<?php echo  $this->config->item('weburl').'/po_invoice/'.$po_orders_data['ref_id'] ?>" role="button">    
+                                                <a target="_blank" class="btn btn-xs btn-success" href="<?php echo  $this->config->item('weburl').'po_invoice/'.$po_orders_data['ref_id'] ?>" role="button">    
                                                      ใบสั่งซื้อ
                                                     </a>
                                             <?php endif ?>

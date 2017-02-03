@@ -4016,7 +4016,7 @@ audio.audio-format {
 .text-success-new {
     color: #c4aa76;
 }
-.glyphicon {
+.glyphicon-status {
   border-radius:50%;
   border: 2px #ddd solid;
   padding:20px;
@@ -4025,7 +4025,7 @@ audio.audio-format {
   color:#999;
 }
 
-.glyphicon:hover {
+.glyphicon-status :hover {
   border-radius:50%;
   color:#fff;
   background-color:#ddd;
