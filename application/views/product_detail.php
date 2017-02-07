@@ -99,6 +99,9 @@
                                                         }
                                                     }
                                                 }
+                                                if ($dis_price == 0) {
+                                                    $dis_price =  $price;
+                                                }
                                             ?>
                                             <?php if ($dis_price < $price): ?>
                                             <span class="new-price" ng-bind="<?php echo $dis_price;?> | currency:'฿':0"></span>

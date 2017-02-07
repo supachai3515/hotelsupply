@@ -26,6 +26,9 @@
                     }
                 }
             }
+            if ($dis_price == 0) {
+               $dis_price =  $price;
+            }
         ?>
 
    <div class="col-sm-4 col-lg-4 col-md-4">
@@ -65,7 +68,7 @@
             <?php else: ?>
                  <div class="action-button button-exclusive btncart outof-stock">
                     <a href="<?php echo base_url('product/'.$row['id']) ?>" class="add-to-cart">
-                        <span>สินค้าหมด</span>
+                        <span>รายละเอียด</span>
                     </a>
                 </div>
             <?php endif ?>
