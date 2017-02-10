@@ -13,6 +13,7 @@
     <meta name="description" content="<?php echo $header['description'];?>">
     <meta name="keyword" content="<?php echo $header['keyword'];?>" /> 
     <meta name="author" content="<?php echo $header['author'];?>">
+    <meta property="fb:app_id" content=""/>
     <title><?php echo $header['title']; ?></title>
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('theme');?>/img/favicon-2.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" type="text/css" media="all" />
