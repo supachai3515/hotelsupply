@@ -144,7 +144,7 @@ class Dealer extends CI_Controller {
 			 	<strong>เบอร์โทร : </strong>	'.$result_dealer['tel'].' '.$result_dealer['mobile'].'<br/>
 			 	<strong>เลขที่ผู้เสียภาษี : </strong>	'.$result_dealer['tax_number'].'<br/>
 			 	<strong>ที่อยู่จัดส่งสินค้า : </strong>	'.$result_dealer['address_receipt'].'<br/>
-			 	<strong>ที่อยู่ออกใบกำกับภาษ๊ : </strong>	'.$result_dealer['address_tax'].'<br/>
+			 	<strong>ที่อยู่ออกใบกำกับภาษี : </strong>	'.$result_dealer['address_tax'].'<br/>
 			 	<strong>วันที่สมัคร : </strong>	'.$result_dealer['date'].'<br/>
 			 	<h4>หลักฐานทะเบียนการค้า</h4> 
                 <p>เอกสารที่ต้องใช้ ให้แนปไฟล์ส่งมาที่<br><span> Email: '.$this->config->item('email_owner').'</span></p>

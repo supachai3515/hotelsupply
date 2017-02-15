@@ -18,8 +18,9 @@ class Notfound extends CI_Controller {
 		//header meta tag 
 		$data['header'] = array('title' =>'404 not found'. $this->config->item('sitename'),
 								'description' =>  $this->config->item('tagline'),
-								'author' => 'bboycomputer.com',
-								'keyword' =>  'อะไหล่ notebook, อะไหล่โน๊ตบุ๊ค, อะไหล่จอ lcd, ขายอะไหล่โน๊ตบุ๊ค , จอโน๊ตบุ๊ค, แบตโน๊ตบุ๊ค, อะแดปเตอร์โน๊ตบุ๊ค,  Mainboard โน๊ตบุ๊ค, ซ่อมโน๊ตบุ๊ค');
+								'author' => $this->config->item('author'),
+								'keyword' =>  $this->config->item('keyword'));
+								
 		//get menu database 
 		$this->load->model('initdata_model');
 		$data['menus_list'] = $this->initdata_model->get_menu();

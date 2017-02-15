@@ -22,6 +22,7 @@ $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']),"",$_SERVER
 $config['sitename'] = "HotelSupply";
 $config['tagline'] = "HotelSupply";
 $config['author'] = "HotelSupply";
+$config['kayword'] = "HotelSupply";
 $config['url_img'] = "http://localhost/hotelsupply/";
 $config['no_url_img'] = "http://localhost/hotelsupply/uploads/no_image.jpg";
 
