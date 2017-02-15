@@ -135,12 +135,12 @@
 
 									 <div class="form-group">
 									    <label for="tel">โทรศัพท์บ้านหรือ Fax</label>
-									    <input ng-model="dealerEdit.tel" class="form-control" pattern="[0-9]{9}" id="tel" name="tel" placeholder="โทรศัพท์บ้านหรือ Fax" type="text">
+									    <input ng-model="dealerEdit.tel" class="form-control"  id="tel" name="tel" placeholder="โทรศัพท์บ้านหรือ Fax" type="text">
 									 </div>
 
 									 <div class="form-group">
 									    <label for="mobile">เบอร์มือถึอ</label>
-									    <input ng-model="dealerEdit.mobile" class="form-control"  pattern="[0-9]{10}" id="mobile" name="mobile" placeholder="เบอร์มือถึอ"  required="required" type="text">
+									    <input ng-model="dealerEdit.mobile" class="form-control"  id="mobile" name="mobile" placeholder="เบอร์มือถึอ"  required="required" type="text">
 									 </div>
 
 
@@ -156,7 +156,7 @@
 
 									 <div class="form-group">
 									    <label for="tax_number">เลขประจำตัวผู้เสียภาษี</label>
-									    <input ng-model="dealerEdit.tax_number" class="form-control" pattern="[0-9]{13}" id="tax_number" name="tax_number" placeholder="เลขประจำตัวผู้เสียภาษี" type="text">
+									    <input ng-model="dealerEdit.tax_number" class="form-control" id="tax_number" name="tax_number" placeholder="เลขประจำตัวผู้เสียภาษี" type="text">
 									 </div>       
 						            <button  type="submit" class="btn btn-default">แก้ไข</button>
 						        </form> <!--/sign up form-->

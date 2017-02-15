@@ -55,7 +55,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="currency">
                                 <span class="menu-lavel">
-                                    LINE ID : hotelsupply
+                                    LINE ID : @hotelsupply
                                 </span>
                             </div>
                         </div>
