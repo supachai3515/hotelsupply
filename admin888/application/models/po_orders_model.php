@@ -185,8 +185,11 @@ class Po_orders_model extends CI_Model {
 	
 	public function update_invoice($po_orders_id)
 	{	
+		date_default_timezone_set("Asia/Bangkok");
 		$data_order = array(
-			'is_invoice' => $this->input->post('is_invoice')			
+			'is_invoice' => $this->input->post('is_invoice'),	
+			'invoice_date' => date("Y-m-d H:i:s"),
+			'invoice_docno' => 'IN'.$po_orders_id.date("Ymd")	
 		);
 
 		$where = array('id' => $po_orders_id);

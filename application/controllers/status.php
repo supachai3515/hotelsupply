@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Status extends CI_Controller {
-
 	public function __construct(){
 		parent::__construct();
 		//call model inti 
 		$this->load->model('initdata_model');
 		$this->load->library('pagination');
+		$this->load->model('dealer_model');
 	}
 
 	public function index($ref_order_id="")
@@ -26,7 +26,8 @@ class Status extends CI_Controller {
 		$data['menu_type'] = $this->initdata_model->get_type();
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 
-		$sql ="SELECT * FROM orders WHERE ref_id = '".$ref_order_id."'"; 
+		$sql ="SELECT o.* ,  s.name status_name , s.id status_id ,s.icon_font FROM orders o LEFT JOIN  
+				order_status s 	 ON o.order_status_id = s.id  WHERE ref_id = '".$ref_order_id."'"; 
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 

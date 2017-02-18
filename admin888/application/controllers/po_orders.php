@@ -255,7 +255,7 @@ class Po_orders extends CI_Controller {
 
 	        $this->email->from($this->config->item('email_noreply'), $this->config->item('email_name'));
 	        $this->email->to($result_po_order_email["email"]);
-	        $this->email->subject($this->config->item('email_name').' ได้ส่งของให้กับ ใบสั่งซื้อเลขที่ #'.$result_po_order_email["id"]);
+	        $this->email->subject($this->config->item('email_name').' ได้ส่งของให้กับ ใบสั่งซื้อเลขที่ #'.$result_po_order_email["invoice_docno"]);
 	        $this->email->message($this->sendmail_po_order_tracking($result_po_order_email["id"]));
 	        if($this->email->send())
 		    {
@@ -356,7 +356,7 @@ class Po_orders extends CI_Controller {
 					<td style="padding-bottom:20px;">
 						<div style="background-color:#9BCA94;padding:20px;">
 					       <h2 class="aligncenter">ทางเราได้จัดส่งสินค้า tracking number : '.$result_order['trackpost'].'</h2>
-					       <p>เลขที่ใบสั่งซื้อ #'.$result_order['id'].'<br/> 
+					       <p>เลขที่ใบสั่งซื้อ #'.$result_order['invoice_docno'].'<br/> 
 					        วันที่สั่งซื้อ : '.date_format($date1,"d/m/Y H:i").'</p>
 				        </div>
 				    </td>

@@ -33,12 +33,12 @@
                             <tbody>
                                 <tr ng-repeat="item in productItems" ng-if="item.price != '0'">
                                     <td class="product-img">
-                                        <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>">
+                                        <a href="<?php echo base_url('product/'.'{{item.id}}') ?>">
                                             <img src="{{item.img}}" alt="">
                                         </a>
                                     </td>
                                     <td class="cart-description">
-                                        <p><a href="<?php echo base_url('product/'.'{{item.slug}}') ?>"><span ng-bind="item.name"></span></a></p>
+                                        <p><a href="<?php echo base_url('product/'.'{{item.id}}') ?>"><span ng-bind="item.name"></span></a></p>
                                         <small ng-if="item.sku !='' ">sku: <span ng-bind="item.sku"></small>
                                     </td>
                                     <td>
@@ -235,7 +235,7 @@
                           </form>
                 </div>
 
-                 <div ng-if="sumTotal() < 1 " class="commerce">
+                <div ng-if="sumTotal() < 1 " class="commerce">
                   <p class="label label-info">คุณไม่มีสินค้าในตะกร้า</p>
                            <div class="cart-button">
                                 <a href="<?php echo base_url('products') ?>">
@@ -243,7 +243,7 @@
                                 </a>
         
                             </div>
-                      </div> 
+                </div> 
             </div>
         </div>
     </div>

@@ -73,7 +73,7 @@ class Products_model extends CI_Model {
 			}
 			$sqlString = $sqlString." ) ";
 		}
-		
+		 
 		return $sqlString;
 	}
 

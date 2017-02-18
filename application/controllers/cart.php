@@ -39,18 +39,32 @@ class Cart extends CI_Controller
             $sql   = "SELECT p.* ,t.name type_name, b.name brand_name
                 FROM  products p 
                 LEFT JOIN product_brand b ON p.product_brand_id = b.id
-                LEFT JOIN product_type t ON p.product_type_id = t.id  WHERE p.id = '" . $items['id'] . "'";
+                LEFT JOIN product_type t ON p.product_type_id = t.id  WHERE
+                p.is_active = 1 AND p.stock > 0 AND p.id = '" . $items['id'] . "'";
             $query = $this->db->query($sql);
             $row   = $query->row_array();
             if (isset($row['id'])) {
-                $price = $row["price"];
+                $price  = $row["price"];
+                $dis_price  = $row["dis_price"];
+
                 if ($this->session->userdata('is_logged_in') && $this->session->userdata('verify') == "1") {
-                    if (isset($row["member_discount"])) {
-                        if ($row["member_discount"] > 0) {
-                            $price = $row["member_discount"];
+
+                    if($this->session->userdata('is_lavel1')) {
+                        if($row["member_discount_lv1"] > 1){
+                            $dis_price = $row["member_discount_lv1"];
+                        }
+                    }
+                    else {
+
+                        if($row["member_discount"] > 1){
+                            $dis_price = $row["member_discount"];
                         }
                     }
                 }
+                if ($dis_price < $price ) {
+                    $price = $dis_price;
+                }
+
                 $image_url = "";
                 if ($row['image'] != "") {
                     $image_url = $this->config->item('url_img') . $row['image'];
@@ -96,17 +110,29 @@ class Cart extends CI_Controller
 
     public function add($id)
     {
-        $sql   = "SELECT * FROM products WHERE id = '" . $id . "'";
+        $sql   = "SELECT * FROM products WHERE is_active = 1 AND stock > 0 AND id = '" . $id . "'";
         $query = $this->db->query($sql);
         $row   = $query->row_array();
         if (isset($row['id'])) {
-            $price = $row["price"];
+            $price  = $row["price"];
+            $dis_price  = $row["dis_price"];
+
             if ($this->session->userdata('is_logged_in') && $this->session->userdata('verify') == "1") {
-                if (isset($row["member_discount"])) {
-                    if ($row["member_discount"] > 0) {
-                        $price = $row["member_discount"];
+
+                if($this->session->userdata('is_lavel1')) {
+                    if($row["member_discount_lv1"] > 1){
+                        $dis_price = $row["member_discount_lv1"];
                     }
                 }
+                else {
+
+                    if($row["member_discount"] > 1){
+                        $dis_price = $row["member_discount"];
+                    }
+                }
+            }
+            if ($dis_price < $price ) {
+                $price = $dis_price;
             }
 
             $data = array(
@@ -121,6 +147,9 @@ class Cart extends CI_Controller
             );
             $this->cart->insert($data);
             redirect('cart');
+        }
+        else {
+            redirect('products');
         }
     }
 
@@ -137,6 +166,7 @@ class Cart extends CI_Controller
         }
         redirect('cart');
     }
+    
     public function delete($rowid)
     {
         $data = array(

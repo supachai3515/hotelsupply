@@ -107,7 +107,6 @@ app.controller('mainCtrl', function($scope,$http) {
     
     }
 
-
     $scope.deleteProduct_click = function(rowid) {
 
         // Simple GET request example:

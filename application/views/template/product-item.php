@@ -26,6 +26,9 @@
                     }
                 }
             }
+            if ($dis_price == 0) {
+               $dis_price =  $price;
+            }
         ?>
 
    <div class="col-sm-4 col-lg-4 col-md-4">
@@ -54,12 +57,30 @@
                     <span class="new-price" ng-bind="<?php echo $dis_price;?> | currency:'฿':0"></span>
                     <?php endif ?>
                 </div>
-            </div>
-            <div class="action-button button-exclusive btncart">
-                <a href="<?php echo base_url('cart/add/'.$row[" id "]) ?>" class="add-to-cart">
-                    <span>+ สั่งซื้อสินค้า</span>
-                </a>
-            </div>
+            </div>                          
+            
+            <?php if ($row['stock'] > 0): ?>
+                <div class="action-button button-exclusive btncart">
+                    <a href="<?php echo base_url('cart/add/'.$row["id"]) ?>" class="add-to-cart">
+                        <span>+ สั่งซื้อสินค้า</span>
+                    </a>
+                </div>
+            <?php else: ?>
+                 <div class="action-button button-exclusive btncart outof-stock">
+                    <a href="<?php echo base_url('product/'.$row['id']) ?>" class="add-to-cart">
+                        <span>รายละเอียด</span>
+                    </a>
+                </div>
+            <?php endif ?>
+            
+
+            <?php if ($this->session->userdata('is_lavel1')): ?>
+                <div class="item-product-title btn-po">
+                     <a href="<?php echo base_url('dealer_po/add/'.$row["id"]) ?>" > + เสนอราคา</a>
+                    </a>
+                </div>
+            <?php endif ?>
+            
         </div>
     </div>
     <?php if ($i%3 ==0): ?>

@@ -24,7 +24,6 @@
                                     <tr>
                                         <th>Product</th>
                                         <th>Description</th>
-                                        <th>Avail.</th>
                                         <th>Unit price</th>
                                         <th>Qty</th>
                                         <th>Total</th>
@@ -34,17 +33,14 @@
                                 <tbody>
                                     <tr ng-repeat="item in productItems" ng-if="item.price != '0'">
                                         <td class="product-img">
-                                            <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>">
+                                            <a href="<?php echo base_url('product/'.'{{item.id}}') ?>">
                                                 <img src="{{item.img}}" alt="">
                                             </a>
                                         </td>
                                         <td class="cart-description">
-                                            <p><a href="<?php echo base_url('product/'.'{{item.slug}}') ?>"><span ng-bind="item.name"></span></a></p>
-                                            <small ng-if="item.sku !='' ">sku: <span ng-bind="item.sku"></small>
-                                        </td>
-                                        <td>
-                                            <span class="label-success">มีสินค้า</span>
-                                        </td>
+                                            <p><a href="<?php echo base_url('product/'.'{{item.id}}') ?>"><span ng-bind="item.name"></span></a></p>
+                                            <small ng-if="item.sku !='' ">SKU : <span ng-bind="item.sku"></small>
+                                            <small><span class="label label-success">มีสินค้า</span></small>
                                         <td>
                                             <span class="price" ng-bind="item.price | currency:'฿':0"></span>
                                         </td>
@@ -57,7 +53,9 @@
                                             <span class="price" ng-bind="item.price * item.quantity | currency:'฿':0"></span>
                                         </td>
                                         <td>
-                                            <a href="" ng-click="deleteProduct_click(item.rowid)"><i class="fa fa-trash-o"></i></a>
+                                            <p class="text-center">
+                                                <a href="" ng-click="deleteProduct_click(item.rowid)"><i class="fa fa-trash-o" style="color:#a94442"></i></a>
+                                            </p>                                        
                                         </td>
                                     </tr>
                                 </tbody>

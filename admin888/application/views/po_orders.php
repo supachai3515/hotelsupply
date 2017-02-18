@@ -44,7 +44,7 @@
                         <strong class="label label-<?php echo $po_orders['priority_color'] ?>"> <i class="<?php echo $po_orders['icon_font'] ?>" aria-hidden="true"></i> <?php echo $po_orders['po_order_status_name'] ?></strong><br/><br/>
                         <?php if ($po_orders['is_invoice']== 0): ?>
 
-                            <a target="_blank" class="btn btn-xs btn-default" href="<?php echo  $this->config->item('weburl').'/quotation/'.$po_orders['ref_id'] ?>" role="button">    
+                            <a target="_blank" class="btn btn-xs btn-default" href="<?php echo  $this->config->item('weburl').'/po_invoice/'.$po_orders['ref_id'] ?>" role="button">    
                                  ใบเสนอราคา
                                 </a>
                         <?php else: ?>
@@ -56,7 +56,11 @@
                         
                         </td>
                         <td>
-                            <span>เลขที่ใบเสนอราคา : <strong>#<?php echo $po_orders['id'] ?></strong></span><br/>
+                            <?php if ($po_orders['is_invoice'] == 0): ?>
+                               <span>เลขที่ใบเสนอราคา : <strong>#<?php echo $po_orders['id'] ?></strong></span><br/>
+                            <?php else: ?>
+                               <span>เลขที่ใบสั่งซื้อ : <strong>#<?php echo $po_orders['invoice_docno'] ?></strong></span><br/>
+                            <?php endif ?>
                             <span>โดย : <strong><?php echo $po_orders['name'] ?></strong></span><br/>
                             <span><i class="fa fa-calendar"></i> <?php echo date("d-m-Y H:i", strtotime($po_orders['date']));?></span>
 

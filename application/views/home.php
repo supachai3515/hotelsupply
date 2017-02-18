@@ -5,23 +5,31 @@
                 <div class="bend niceties preview-2">
                     <div id="ensign-nivoslider-2" class="slides">
                     <?php foreach ($slider_list as $slider): ?>
-                        <?php if ($slider['id'] != '4'): ?>
+                        <?php if ($slider['id'] != '9'): ?>
                             <img src="<?php echo $slider['image'] ?>" alt="" title="#slider-direction-<?php echo $slider['id']; ?>" />
                         <?php endif ?>    
                      <?php endforeach ?>  
                     </div>
                     <?php foreach ($slider_list as $slider): ?>
-                        <?php if ($slider['id'] != '4'): ?>
+                        <?php if ($slider['id'] != '9'): ?>
 
                           <!-- direction 1 -->
                             <div id="slider-direction-<?php echo $slider['id']; ?>" class="t-cn slider-direction">
                                 <div class="slider-progress"></div>
                                 <div class="slider-content t-cn s-tb slider-1">
                                     <div class="title-container s-tb-c title-compress">
+                                    <?php if (isset($slider['name']) && $slider['name'] != ""): ?>
                                         <h1 class="animated bounceInDown title1"><?php echo $slider['name'] ?></h1>
+                                    <?php endif ?>
+                                    <?php if (isset($slider['description'])&& $slider['description'] != ""): ?>
                                         <h3 class="title2"><span><?php echo $slider['description'] ?></span></h3>
+                                    <?php endif ?>
+                                    <?php if (isset($slider['description1'])&& $slider['description1'] != ""): ?>
                                         <p class="desc-layer"> <?php echo $slider['description1'] ?></p>
+                                    <?php endif ?>
+                                    <?php if (isset($slider['name_link'])&& $slider['name_link'] != ""): ?>
                                         <a href="<?php echo $slider['link'] ?>" class="link"><?php echo $slider['name_link'] ?></a>
+                                    <?php endif ?>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +56,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="product-header">
                                 <div class="area-title">
-                                    <h2><i class="fa fa-bullhorn" aria-hidden="true"></i> ข่าวสารจากทางร้าน Bboyconputer</h2>
+                                    <h2><i class="fa fa-bullhorn" aria-hidden="true"></i> ข่าวสารจาก <?php echo $this->config->item('sitename'); ?></h2>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +66,7 @@
                         <div class="row">
 
                         <?php foreach ($slider_list as $slider): ?>
-                            <?php if ($slider['id'] == '4'): ?>
+                            <?php if ($slider['id'] == '9'): ?>
                                 <div class="jumbotron">
                                     <div class="container">
                                         <h1 style="font-size: 22px;"><?php echo $slider['name'] ?></h1>

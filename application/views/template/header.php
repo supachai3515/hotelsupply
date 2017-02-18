@@ -13,11 +13,13 @@
     <meta name="description" content="<?php echo $header['description'];?>">
     <meta name="keyword" content="<?php echo $header['keyword'];?>" /> 
     <meta name="author" content="<?php echo $header['author'];?>">
+    <meta property="fb:app_id" content=""/>
     <title><?php echo $header['title']; ?></title>
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('theme');?>/img/favicon-2.ico">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,600" type="text/css" media="all" />
     <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Athiti|Kanit:200" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('theme');?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url('theme');?>/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url('theme');?>/css/owl.carousel.css">
@@ -53,7 +55,7 @@
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="currency">
                                 <span class="menu-lavel">
-                                    LINE ID : hotelsupply
+                                    LINE ID : @hotelsupply
                                 </span>
                             </div>
                         </div>
@@ -86,7 +88,7 @@
                         <div class="col-md-3">
                             <div class="logo">
                                 <a href="<?php echo base_url()?>">
-                                    <img src="<?php echo base_url('theme');?>/img/logo/logo.png" alt="">
+                                    <img src="<?php echo base_url('theme');?>/img/logo/logo-hotelsupply.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -123,12 +125,12 @@
                                         <div class="mini-cart-content" ng-if="sumTotal() > 1">
                                             <div class="cart-img-details" ng-repeat="item in productItems" ng-if="item.price != '0'">
                                                 <div class="cart-img-photo">
-                                                    <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>">
+                                                    <a href="<?php echo base_url('product/'.'{{item.id}}') ?>">
                                                         <img src="{{item.img}}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="cart-img-contaent">
-                                                    <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>"  ><h4  ng-bind="item.name"></h4></a>
+                                                    <a href="<?php echo base_url('product/'.'{{item.id}}') ?>"  ><h4  ng-bind="item.name"></h4></a>
                                                     <span class="quantity"><span ng-bind="item.quantity"></span> ชิ้น</span>
                                                     <span ng-bind="item.price | currency:'฿':0"></span>
                                                 </div>
