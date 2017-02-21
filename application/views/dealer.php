@@ -57,9 +57,6 @@
 				        		
 				        	<?php endif ?>
 					        <?php if (count($orderList) > 0): ?>
-					        	<div class="page-header">
-					        	  <h1>ใบสั่งซื้อย้อนหลัง</h1>
-					        	</div>
 					        	<div class="table-responsive">
 					        		<table class="table table-condensed">
 					        			<thead>

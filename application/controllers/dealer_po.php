@@ -43,6 +43,7 @@ class Dealer_po extends CI_Controller {
 		if($this->session->userdata('is_logged_in')){
 			$data['orderList'] =  $this->dealer_model->get_orderList($this->session->userdata('username'));
 			$data['dealerInfo'] =  $this->dealer_model->get_dealerInfo($this->session->userdata('username'));
+			$data['po_orderList'] =  $this->dealer_model->get_po_orderList($this->session->userdata('username'));
 			
 		}
 
@@ -58,7 +59,7 @@ class Dealer_po extends CI_Controller {
 		$data['menu_brands'] = $this->initdata_model->get_brands();
 
         //content file view
-		$data['content'] = 'dealer_po';
+		$data['content'] = 'dealer_po_list';
 		// if have file script
 		//$data['script_file']= "js/product_add_js";
 		//load layout
