@@ -56,10 +56,10 @@
                         </div>
                         <div class="col-sm-2">
                             <?php if ($order['po_order_status_id']==7): ?>
-                            <span class="glyphicon-status glyphicon-send glyphicon-active"></span>
+                            <span class="glyphicon-status fa fa-paper-plane-o glyphicon-active"></span>
                             <h4>จัดสั่งแล้ว</h4>
                             <?php else: ?>
-                            <span class="glyphicon-status glyphicon-send"></span>
+                            <span class="glyphicon-status fa fa-paper-plane-o"></span>
                             <h4>รอการจัดส่ง</h4>
                             <?php endif ?>
                         </div>

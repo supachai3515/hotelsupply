@@ -78,12 +78,12 @@
 
 				 <div class="form-group">
 				   
-				    <input ng-model="dealer.phone" class="form-control" pattern="[0-9]{9}" id="phone" name="phone" placeholder="โทรศัพท์บ้านหรือ Fax" type="text">
+				    <input ng-model="dealer.phone" class="form-control"  id="phone" name="phone" placeholder="โทรศัพท์บ้านหรือ Fax" type="text">
 				 </div>
 
 				 <div class="form-group">
 				   
-				    <input ng-model="dealer.mobile" class="form-control"  pattern="[0-9]{10}" id="mobile" name="mobile" placeholder="เบอร์มือถึอ"  required="required" type="text">
+				    <input ng-model="dealer.mobile" class="form-control"  id="mobile" name="mobile" placeholder="เบอร์มือถึอ"  required="required" type="text">
 				 </div>
 
 
@@ -99,7 +99,7 @@
 
 				 <div class="form-group">
 				    
-				    <input ng-model="dealer.nid" class="form-control" pattern="[0-9]{13}" id="nid" name="nid" placeholder="เลขประจำตัวผู้เสียภาษี" type="text">
+				    <input ng-model="dealer.nid" class="form-control" id="nid" name="nid" placeholder="เลขประจำตัวผู้เสียภาษี" type="text">
 				 </div>
 
                 <h4>หลักฐานทะเบียนการค้า</h4> 

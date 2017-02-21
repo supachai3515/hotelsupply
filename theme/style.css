@@ -4042,10 +4042,7 @@ audio.audio-format {
 }
 
 .glyphicon-active{
-    color:#c4aa76;
-    background-color:#fff;
-}
-.glyphicon-active:hover{
-    color:#fff;
+   color:#fff;
     background-color:#c4aa76;
+   
 }
