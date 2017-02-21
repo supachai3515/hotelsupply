@@ -23,6 +23,14 @@
             <input id="name" name="name" type="text" value="<?php echo $productbrand_data['name']; ?>" placeholder="ชื่อ" class="form-control input-md" required="">
           </div>
         </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-3 control-label" for="name">URL link</label>  
+          <div class="col-md-6">
+          <input id="slug" name="slug" type="text" value="<?php echo urldecode($productbrand_data['slug']); ?>" placeholder="URL link" class="form-control input-md" required="">
+            <span class="text-danger">***ถ้ามีการแก้ไขจะทำให้ link สินค้าเปลี่ยน ***</span>
+          </div>
+        </div>
 
 
          <!-- Textarea -->

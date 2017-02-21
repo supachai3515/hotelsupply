@@ -3,7 +3,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Producttype_model extends CI_Model {
-
+	public function __construct(){
+		parent::__construct();
+		//call model inti 
+		$this->load->model('Initdata_model');
+	}
 
 	public function get_producttype( $start, $limit)
 	{
@@ -51,10 +55,16 @@ class Producttype_model extends CI_Model {
 
 	public function update_producttype($producttype_id)
 	{
+		$slug = $slug =$this->input->post('slug');
+		if($this->input->post('slug') == ""){
+			$slug =$this->input->post('name');
+		}
+
+
 		date_default_timezone_set("Asia/Bangkok");
 		$data_producttype = array(
 			'name' => $this->input->post('name'),
-			'slug' => $this->url_slug($this->input->post('name')),
+			'slug' => $this->Initdata_model->slug($slug),
 			'description' => $this->input->post('description'),
 			'parenttype_id' => $this->input->post('select_type'),
 			'modified_date' => date("Y-m-d H:i:s"),
@@ -70,7 +80,7 @@ class Producttype_model extends CI_Model {
 		date_default_timezone_set("Asia/Bangkok");
 		$data_producttype = array(
 			'name' => $this->input->post('name'),
-			'slug' => $this->url_slug($this->input->post('name')),
+			'slug' => $this->$this->Initdata_model->slug($this->input->post('name')),
 			'description' => $this->input->post('description'),
 			'parenttype_id' => $this->input->post('select_type'),
 			'create_date' => date("Y-m-d H:i:s"),

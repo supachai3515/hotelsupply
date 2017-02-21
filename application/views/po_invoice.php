@@ -97,7 +97,7 @@
 										<td><?php echo $value['sku'] ?></td>
 
 										<td class="lineover">
-											<a target="_blank" href="<?php echo base_url("product/".$value['sku']) ?>">
+											<a target="_blank" href="<?php echo base_url("product/".$value['slug']) ?>">
 												<?php echo $value['name'] ?>
 											</a>
 										</td>

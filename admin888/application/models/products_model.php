@@ -3,7 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Products_model extends CI_Model {
 
-
+	public function __construct(){
+		parent::__construct();
+		//call model inti 
+		$this->load->model('Initdata_model');
+	}
+	
 	public function get_products( $start, $limit)
 	{
 
@@ -49,7 +54,7 @@ class Products_model extends CI_Model {
 		$data_product = array(
 			'sku' => $this->input->post('sku'),
 			'name' => $this->input->post('name'),
-			'slug' => $this->url_slug($this->input->post('name')),
+			'slug' => $this->Initdata_model->slug($this->input->post('slug')),
 			'product_type_id' => $this->input->post('select_type'),
 			'product_brand_id' => $this->input->post('select_brand'),
 			'model' => $this->input->post('model'),
@@ -131,12 +136,16 @@ class Products_model extends CI_Model {
 
 	public function update_product($product_id)
 	{
+		$slug = $slug =$this->input->post('slug');
+		if($this->input->post('slug') == ""){
+			$slug =$this->input->post('name');
+		}
 
 		date_default_timezone_set("Asia/Bangkok");
 		$data_product = array(
 			'sku' => $this->input->post('sku'),
 			'name' => $this->input->post('name'),
-			'slug' => $this->url_slug($this->input->post('name')),
+			'slug' => $this->Initdata_model->slug($slug),
 			'product_brand_id' => $this->input->post('select_brand'),
 			'product_type_id' => $this->input->post('select_type'),
 			'model' => $this->input->post('model'),
@@ -363,6 +372,7 @@ class Products_model extends CI_Model {
 		
 		return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
 	}
+
 
 }
 

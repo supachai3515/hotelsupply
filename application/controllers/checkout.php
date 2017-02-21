@@ -320,7 +320,7 @@ class Checkout extends CI_Controller {
 			   <tr>
                 <td style="padding: 5px 10px;background-color: #92C7A3;color: #fff;">
                     SKU : '.$value["sku"].'<br/>
-                    <a target="_blank" href="'.base_url("product/".$value["id"]).'">
+                    <a target="_blank" href="'.base_url("product/".$value["slug"]).'">
                         '.$value["name"].'
                     </a>
                 </td>

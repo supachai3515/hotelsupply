@@ -34,14 +34,14 @@
    <div class="col-sm-4 col-lg-4 col-md-4">
        <div class="item-product">
            <div class="img-product-item text-center">
-                <a href="<?php echo base_url('product/'.$row['id']) ?>">
+                <a href="<?php echo base_url('product/'.$row['slug']) ?>">
                     <img src="<?php echo $image_url;?>" class="img-responsive" alt="<?php echo $row['name']; ?>">
                 </a>
            </div>
            
             <div class="item-product-info">
                 <div class="item-product-title">
-                    <a href="<?php echo base_url('product/'.$row['id']) ?>">
+                    <a href="<?php echo base_url('product/'.$row['slug']) ?>">
                         <?php echo $row['name'] ?>
                         <br/>
                         <?php if (isset($row['model']) && $row['model'] != ""): ?>
@@ -67,7 +67,7 @@
                 </div>
             <?php else: ?>
                  <div class="action-button button-exclusive btncart outof-stock">
-                    <a href="<?php echo base_url('product/'.$row['id']) ?>" class="add-to-cart">
+                    <a href="<?php echo base_url('product/'.$row['slug']) ?>" class="add-to-cart">
                         <span>รายละเอียด</span>
                     </a>
                 </div>

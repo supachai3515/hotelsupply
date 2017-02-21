@@ -11,17 +11,16 @@ class Product extends CI_Controller {
 	}
 
 	//page view
-	public function index($id)
+	public function index($slug)
 	{
-
-		$id = urldecode($id);
-		$sql ="SELECT p.* ,t.name type_name, b.name brand_name , stock_all , t.id type_id, b.id brand_id
+		$sql ="SELECT p.* ,t.name type_name, b.name brand_name , stock_all , t.id type_id, b.id brand_id, 
+	    		t.slug type_slug, b.slug brand_slug
 				FROM  products p 
 				LEFT JOIN product_brand b ON p.product_brand_id = b.id
 				LEFT JOIN product_type t ON p.product_type_id = t.id 
 				LEFT JOIN (SELECT product_id, SUM(number) stock_all FROM stock  
 				GROUP BY product_id) s ON s.product_id = p.id 
-				WHERE p.id = '".$id."'"; 
+				WHERE p.slug = '".$slug."'"; 
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 		$data['product_detail'] = $row;

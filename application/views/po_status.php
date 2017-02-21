@@ -178,7 +178,7 @@
                                                 </td>
                                                 <td class="cart-description">
                                                     <p>
-                                                        <a target="_blank" href="<?php echo base_url(" product/ ".$value['slug']) ?>">
+                                                        <a target="_blank" href="<?php echo base_url("product/ ".$value['slug']) ?>">
                                                             <?php echo $value['name'] ?>
                                                         </a>
                                                     </p>

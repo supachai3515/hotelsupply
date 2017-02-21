@@ -24,8 +24,6 @@
                                     <ul>
                                         <li><a href="<?php echo base_url('howtobuy')?>">วิธีการสั่งซื้อ</a></li>
                                         <li><a href="<?php echo base_url('payment')?>">วีธีแจ้งชำระเงิน</a></li>
-                                        <li><a href="<?php echo base_url('tracking')?>">วีธีการจัดส่ง</a></li>
-                                        <li><a href="<?php echo base_url('warranty')?>">การรับประกัน</a></li>
                                         <li><a href="<?php echo base_url('dealer')?>">Dealer</a></li>
                                     </ul>
                                 </div>

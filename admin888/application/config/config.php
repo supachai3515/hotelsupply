@@ -29,7 +29,7 @@ $config['email_name'] = "hotelsupply";
 $config['email_owner'] = "hotelsupplyinth@gmail.com";
 $config['email_noreply'] = "hotelsupplyinth@gmail.com";
 $config['pass_mail_noreply'] = "1Q2W3E4R";
-$config['weburl'] = "http://www.hotelsupply.in.th/";
+$config['weburl'] = "http://localhost/hotelsupply/";
 
 $config['payment_transfer'] = '<h4>ธนาคารกรุงเทพ</h4>
 								<p>ชื่อบัญชี : นิรันดร์ พงศ์กิตติ์วิศาล<br/>

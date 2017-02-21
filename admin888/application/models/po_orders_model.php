@@ -85,6 +85,57 @@ class Po_orders_model extends CI_Model {
 		$where = "id = '".$po_orders_id."'"; 
 		$this->db->update("po_orders", $data_order, $where);
 
+
+
+		if($this->input->post('select_status')== "5"){
+			// remove stock
+
+			$rows = $this->get_po_orders_detail_id($po_orders_id);
+			foreach ($rows as $row) {
+
+				$sql =" SELECT COUNT(product_id) as connt_id FROM  stock WHERE product_id ='".$row['product_id']."' AND po_order_id ='".$po_orders_id."'"; 
+
+				$query = $this->db->query($sql);
+				$r = $query->row_array();
+				if( $r['connt_id']==0 ) {
+					$data_stock = array(
+						'product_id' =>  $row['product_id'],
+						'po_order_id' => $po_orders_id,
+						'number'=> $row['quantity']
+					);
+					$this->db->insert("stock", $data_stock);
+
+					//update product
+					$sql_update ="UPDATE products SET stock = stock-".$row['quantity']." WHERE id =".$row['product_id']." ";
+					$this->db->query($sql_update);
+				}
+			}
+		}
+
+		if($this->input->post('select_status')== "9"){
+
+			$rows = $this->get_po_orders_detail_id($po_orders_id);
+			foreach ($rows as $row) {
+				$sql =" SELECT COUNT(product_id) as connt_id FROM  stock WHERE product_id ='".$row['product_id']."' AND po_order_id ='".$po_orders_id."'"; 
+
+				$query = $this->db->query($sql);
+				$r = $query->row_array();
+				if( $r['connt_id']>0 ) {
+					$data_stock = array(
+						'product_id' =>  $row['product_id'],
+						'po_order_id' => $po_orders_id,
+						'number'=> $row['quantity']
+					);
+					$this->db->delete("stock", $data_stock);
+
+					//update product
+					$sql_update ="UPDATE products SET stock = stock+".$row['quantity']." WHERE id =".$row['product_id']." ";
+					$this->db->query($sql_update);
+				}
+			}
+
+		}
+
 	}
 
 	public function update_tracking($po_orders_id)
@@ -189,7 +240,7 @@ class Po_orders_model extends CI_Model {
 		$data_order = array(
 			'is_invoice' => $this->input->post('is_invoice'),	
 			'invoice_date' => date("Y-m-d H:i:s"),
-			'invoice_docno' => 'IN'.$po_orders_id.date("Ymd")	
+			'invoice_docno' => 'IN'.date("ymd").str_pad($po_orders_id, 4, "0", STR_PAD_LEFT)	
 		);
 
 		$where = array('id' => $po_orders_id);

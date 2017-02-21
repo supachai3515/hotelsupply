@@ -15,12 +15,12 @@
                         <?php foreach ($menu_sub_type as $sub): ?>
                         <?php if ($master['id'] == $sub['parenttype_id'] && $sub['name'] !=""): ?>
                         <li class="sub-category">
-                            <a href="<?php echo base_url('products/category/'.$sub['id']) ?>">
+                            <a href="<?php echo base_url('products/category/'.$sub['slug']) ?>">
                                 <?php echo  $sub['name']; ?> <span>(<?php echo $sub['count_product'] ?>)</span></a>
                         </li>
                         <?php endif ?>
                         <?php endforeach ?>
-                        <li class="sub-category"><a href="<?php echo base_url('products/category/'.$master['id']) ?>">ทั้งหมด</a></li>
+                        <li class="sub-category"><a href="<?php echo base_url('products/category/'.$master['slug']) ?>">ทั้งหมด</a></li>
                     </ul>
                 </li>
                 <?php endforeach ?>
@@ -38,7 +38,7 @@
                 <?php foreach ($menu_brands as $brand): ?>
                 <?php if ($brand['name']!="" && $brand['type_id'] !="7"): ?>
                 <li>
-                    <a href="<?php echo base_url('products/brand/'.$brand['id']) ?>">
+                    <a href="<?php echo base_url('products/brand/'.$brand['slug']) ?>">
                         <?php echo $brand['name'] ?>
                         <span>(<?php echo $brand['count_product'] ?>)</span>
                     </a>

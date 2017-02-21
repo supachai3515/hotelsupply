@@ -33,12 +33,12 @@
                                 <tbody>
                                     <tr ng-repeat="item in productItems" ng-if="item.price != '0'">
                                         <td class="product-img">
-                                            <a href="<?php echo base_url('product/'.'{{item.id}}') ?>">
+                                            <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>">
                                                 <img src="{{item.img}}" alt="">
                                             </a>
                                         </td>
                                         <td class="cart-description">
-                                            <p><a href="<?php echo base_url('product/'.'{{item.id}}') ?>"><span ng-bind="item.name"></span></a></p>
+                                            <p><a href="<?php echo base_url('product/'.'{{item.slug}}') ?>"><span ng-bind="item.name"></span></a></p>
                                             <small ng-if="item.sku !='' ">SKU : <span ng-bind="item.sku"></small>
                                             <small><span class="label label-success">มีสินค้า</span></small>
                                         <td>

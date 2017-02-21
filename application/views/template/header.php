@@ -125,12 +125,12 @@
                                         <div class="mini-cart-content" ng-if="sumTotal() > 1">
                                             <div class="cart-img-details" ng-repeat="item in productItems" ng-if="item.price != '0'">
                                                 <div class="cart-img-photo">
-                                                    <a href="<?php echo base_url('product/'.'{{item.id}}') ?>">
+                                                    <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>">
                                                         <img src="{{item.img}}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="cart-img-contaent">
-                                                    <a href="<?php echo base_url('product/'.'{{item.id}}') ?>"  ><h4  ng-bind="item.name"></h4></a>
+                                                    <a href="<?php echo base_url('product/'.'{{item.slug}}') ?>"  ><h4  ng-bind="item.name"></h4></a>
                                                     <span class="quantity"><span ng-bind="item.quantity"></span> ชิ้น</span>
                                                     <span ng-bind="item.price | currency:'฿':0"></span>
                                                 </div>
@@ -169,8 +169,6 @@
                                     <li><a href="<?php echo base_url('products')?>">สินค้า</a></li>
                                     <li><a href="<?php echo base_url('howtobuy')?>">วิธีการสั่งซื้อ</a></li>
                                     <li><a href="<?php echo base_url('payment')?>">แจ้งชำระเงิน</a></li>
-                                    <li><a href="<?php echo base_url('tracking')?>">การจัดส่ง</a></li>
-                                    <li><a href="<?php echo base_url('warranty')?>">การรับประกัน</a></li> 
                                     <li><a href="<?php echo base_url('dealer')?>">Dealer</a></li>
                                     <li><a href="<?php echo base_url('contact')?>">ติดต่อเรา</a></li>
                                 </ul>

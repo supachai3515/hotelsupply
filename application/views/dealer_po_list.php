@@ -57,7 +57,7 @@
                                                 <strong>Tracking : </strong><?php echo $value['trackpost'];?><br/>
                                             </td>
                                             <td>
-                                                <span class="amount" ng-bind="<?php echo $value["total"];?> | currency:'฿':0"></span>
+                                                <span class="amount"><?php echo number_format($value["total"]); ?></span>
                                             </td>
                                             <td>
                                                 <a href="<?php echo base_url('po_invoice/'.$value['ref_id']);?>" target="_bank">

@@ -166,7 +166,7 @@
                                             <?php foreach ($order_detail as $value): ?>
                                             <tr>
                                                 <td class="product-img">
-                                                    <a href="<?php echo base_url('product/'.$value['id']) ?>">
+                                                    <a href="<?php echo base_url('product/'.$value['slug']) ?>">
                                                 <img src="<?php echo $this->config->item('url_img').$value['image']; ?>" alt="">
                                             </a>
                                                 </td>

@@ -104,8 +104,8 @@ class Products extends CI_Controller {
 		$data['product_list'] = $this->products_model->get_products_category_brand($type, $brand, $page, $config['per_page']);
 		$data['links_pagination'] = $this->pagination->create_links();
 
-		$type_all = $this->initdata_model->get_type_by_id($type);
-		$brand_all = $this->initdata_model->get_brand_by_id($brand);
+		$type_all = $this->initdata_model->get_type_by_slug($type);
+		$brand_all = $this->initdata_model->get_brand_by_slug($brand);
 
 		$data['title_tag'] ='หมวดสินค้า : '.$type_all['name'].' - '.$brand_all['name'];
 
@@ -134,7 +134,6 @@ class Products extends CI_Controller {
 	//page view
 	public function category($type,$page=0)
 	{
-		$type = urldecode($type);
 
 		$data['total_product'] = $this->products_model->get_products_category_count($type);
 		$data['page_product'] = $page+1;
@@ -168,7 +167,7 @@ class Products extends CI_Controller {
 		$data['links_pagination'] = $this->pagination->create_links();
 
 
-		$data['detail'] = $type_all = $this->initdata_model->get_type_by_id($type);
+		$data['detail'] = $type_all = $this->initdata_model->get_type_by_slug($type);
 		$data['title_tag'] ='หมวดสินค้า : '.$type_all['name'].'';
 
 		$data['header'] = array('title' => $type_all['name'] .' | '.$this->config->item('sitename'),
@@ -231,7 +230,7 @@ class Products extends CI_Controller {
 		$data['product_list'] = $this->products_model->get_products__brand($brand, $page, $config['per_page']);
 		$data['links_pagination'] = $this->pagination->create_links();
 
-		$data['detail'] = $brand_all = $this->initdata_model->get_brand_by_id($brand);
+		$data['detail'] = $brand_all = $this->initdata_model->get_brand_by_slug($brand);
 		$data['title_tag'] ='ยี่ห้อสินค้า : '.$brand_all['name'];
 
 		$data['header'] = array('title' => $brand_all['name'].' | '.$this->config->item('sitename'),

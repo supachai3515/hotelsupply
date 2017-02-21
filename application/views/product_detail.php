@@ -21,6 +21,9 @@
                                 </li>
                                 <li><a href="<?php echo base_url('products'); ?>">สินค้า</a> <i class="fa fa-angle-right"></i></li>
                                 <li>
+                                    <a href="<?php echo base_url('products/category/'.$product_detail['type_slug']) ?>"><?php echo $product_detail['type_name'] ?></a><i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
                                     <?php echo $product_detail['name'] ?>
                                 </li>
                             </ul>
@@ -65,7 +68,7 @@
                                             <br>
                                             <?php endif ?>
                                             <?php if (isset($product_detail['brand_name'])  && $product_detail['brand_name'] !=''): ?>
-                                            <span><strong>BRAND : </strong></span><span> <a href="<?php echo base_url('products/brand/'.$product_detail['brand_id']) ?>"><?php echo $product_detail['brand_name'] ?></a></span>
+                                            <span><strong>BRAND : </strong></span><span> <a href="<?php echo base_url('products/brand/'.$product_detail['brand_slug']) ?>"><?php echo $product_detail['brand_name'] ?></a></span>
                                             <br>
                                             <?php endif ?>
                                         </p>
@@ -129,14 +132,14 @@
                                         
                                         <div class="btn-group" style="padding-bottom:10px;">
                                             <div class="shere-button">
-                                                <a href="https://twitter.com/home?status=<?php echo base_url('product/'.$product_detail['id']) ?>" target="_blank">
+                                                <a href="https://twitter.com/home?status=<?php echo base_url('product/'.$product_detail['slug']) ?>" target="_blank">
                                                     <i class="fa fa-twitter"></i> Tweet
                                                 </a>
 
-                                                <a href="https://www.facebook.com/sharer/sharer.php?u="<?php echo base_url('product/'.$product_detail['id']); ?>" target="_blank">
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u="<?php echo base_url('product/'.$product_detail['slug']); ?>" target="_blank">
                                                     <i class="fa fa-facebook"></i> Share
                                                 </a>
-                                                <a href="https://plus.google.com/share?url=<?php echo base_url('product/'.$product_detail['id']) ?>" target="_blank">
+                                                <a href="https://plus.google.com/share?url=<?php echo base_url('product/'.$product_detail['slug']) ?>" target="_blank">
                                                     <i class="fa fa-google-plus"></i> Google+
                                                 </a>
                                             </div>

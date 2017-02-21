@@ -85,6 +85,58 @@ class Orders_model extends CI_Model {
 		$where = "id = '".$orders_id."'"; 
 		$this->db->update("orders", $data_order, $where);
 
+
+
+		if($this->input->post('select_status')== "2"){
+			// remove stock
+
+			$rows = $this->get_orders_detail_id($orders_id);
+			foreach ($rows as $row) {
+
+				$sql =" SELECT COUNT(product_id) as connt_id FROM  stock WHERE product_id ='".$row['product_id']."' AND order_id ='".$orders_id."'"; 
+
+				$query = $this->db->query($sql);
+				$r = $query->row_array();
+				if( $r['connt_id']==0 ) {
+					$data_stock = array(
+						'product_id' =>  $row['product_id'],
+						'order_id' => $orders_id,
+						'number'=> $row['quantity']
+					);
+					$this->db->insert("stock", $data_stock);
+
+					//update product
+					$sql_update ="UPDATE products SET stock = stock-".$row['quantity']." WHERE id =".$row['product_id']." ";
+					$this->db->query($sql_update);
+				}
+			}
+		}
+
+		if($this->input->post('select_status')== "6"){
+
+			$rows = $this->get_orders_detail_id($orders_id);
+			foreach ($rows as $row) {
+				$sql =" SELECT COUNT(product_id) as connt_id FROM  stock WHERE product_id ='".$row['product_id']."' AND order_id ='".$orders_id."'"; 
+
+				$query = $this->db->query($sql);
+				$r = $query->row_array();
+				if( $r['connt_id']>0 ) {
+					$data_stock = array(
+						'product_id' =>  $row['product_id'],
+						'order_id' => $orders_id,
+						'number'=> $row['quantity']
+					);
+					$this->db->delete("stock", $data_stock);
+
+					//update product
+					$sql_update ="UPDATE products SET stock = stock+".$row['quantity']." WHERE id =".$row['product_id']." ";
+					$this->db->query($sql_update);
+				}
+			}
+
+		}
+
+
 	}
 
 	public function update_tracking($orders_id)
