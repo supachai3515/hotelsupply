@@ -86,9 +86,8 @@
                     <div class="row">
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="single-banner">
-                                <a href="<?php echo base_url('tracking');?>">
-                                        <img src="<?php echo base_url('theme');?>/img/banner/banner-tacking.png" alt="">
-                                    </a>
+                                <a href="#">      
+                                 </a>
                             </div>
                         </div>
                         <div class="col-sm-4 col-lg-4 col-md-4">
@@ -100,9 +99,8 @@
                         </div>
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="single-banner">
-                                <a href="<?php echo base_url('warranty');?>">
-                                        <img src="<?php echo base_url('theme');?>/img/banner/warranty.png" alt="">
-                                    </a>
+                                <a href="#">   
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -161,4 +159,48 @@
         </div>
     </div>
 </section>
+<section class="blog-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="area-title">
+                        <h2>โพสต์ล่าสุด</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="blog-carosul">
+                <?php foreach ($content_wordpress as $content): ?>
+                    
+                    <!-- single-blog-start -->
+                    <div class="col-lg-4 col-md-4">
+                        <div class="single-recent-post">
+                            <div class="post-image">
+                                <a href="<?php echo $content['link'] ?>">
+                                    <img src="<?php echo $this->config->item('weburl').'content/wp-content/uploads/'.$content['image_file'] ?>" alt="">
+                                </a>
+                            </div>
+                            <div class="post-info">
+                                <h2 class="post-title">
+                                    <a href="<?php echo $content['link'] ?>"><?php echo $content['title'] ?></a>
+                                </h2>
+                                <p><?php echo substr(strip_tags($content['post_content']),0,100); ?><a href="<?php echo $content['link'] ?>"> [...]
+                                </a></p>
+                            </div>
+                            <div class="post-additional-info">
+                                <span class="post-date">
+                                     <?php echo $content['post_date'] ?>
+                                </span>
+                                <span class="post-author">
+                                    Post by  <b><?php echo $content['display_name'] ?></b>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single-blog-end -->
+                <?php endforeach ?>
+                </div>
+            </div>
+        </div>
+    </section>
 <?php $this->load->view('template/logo'); ?>

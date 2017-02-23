@@ -27,6 +27,31 @@ class Home_model extends CI_Model {
 		return  $result->result_array();
 	}
 
+	public function get_content_wordpress()
+	{
+		$sql ="SELECT m.* ,pm.meta_value as image_file, u.display_name FROM (
+				SELECT 
+				ID, p.post_author,p.post_content, post_title AS title, p.guid link, post_excerpt AS excerpt ,p.post_date, pm.meta_key ,pm.meta_value as id_file
+				FROM wp_posts p
+				JOIN wp_term_relationships tr ON (p.ID = tr.object_id)
+				JOIN wp_term_taxonomy tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)
+				JOIN wp_terms t ON (tt.term_id = t.term_id)
+				LEFT JOIN wp_postmeta pm on  p.ID = pm.post_id
+				WHERE p.post_type='post'
+				AND p.post_status = 'publish'
+				AND pm.meta_key = '_thumbnail_id' LIMIT 10) m 
+				LEFT JOIN wp_posts p ON p.ID = m.id_file
+				LEFT JOIN wp_postmeta pm on  m.id_file = pm.post_id
+				LEFT JOIN wp_users u ON u.ID = m.post_author 
+				WHERE pm.meta_key = '_wp_attached_file'
+
+				";
+		$result = $this->db->query($sql);
+		return  $result->result_array();
+
+		
+	}
+
 
 }
 

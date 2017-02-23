@@ -25,6 +25,7 @@
                                         <li><a href="<?php echo base_url('howtobuy')?>">วิธีการสั่งซื้อ</a></li>
                                         <li><a href="<?php echo base_url('payment')?>">วีธีแจ้งชำระเงิน</a></li>
                                         <li><a href="<?php echo base_url('dealer')?>">Dealer</a></li>
+                                         <li><a href="<?php echo base_url('content')?>">บทความ</a></li>
                                     </ul>
                                 </div>
                             </div>

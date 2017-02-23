@@ -35,6 +35,7 @@ class Home extends CI_Controller {
 		//list product
 		$data['product_new'] = $this->home_model->get_products_new();
 		$data['product_hot'] = $this->home_model->get_products_hot();
+		$data['content_wordpress'] = $this->home_model->get_content_wordpress();
 
         //content file view
 		$data['content'] = 'home';
@@ -42,6 +43,19 @@ class Home extends CI_Controller {
 		//$data['script_file']= "js/product_add_js";
 		//load layout
 		$this->load->view('template/layout', $data);	
+	}
+
+	public function getExcerpt($str, $startPos=0, $maxLength=100) {
+		if(strlen($str) > $maxLength) {
+			$excerpt   = substr($str, $startPos, $maxLength-3);
+			$lastSpace = strrpos($excerpt, ' ');
+			$excerpt   = substr($excerpt, 0, $lastSpace);
+			$excerpt  .= '...';
+		} else {
+			$excerpt = $str;
+		}
+		
+		return $excerpt;
 	}
 }
 

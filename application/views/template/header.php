@@ -170,6 +170,7 @@
                                     <li><a href="<?php echo base_url('howtobuy')?>">วิธีการสั่งซื้อ</a></li>
                                     <li><a href="<?php echo base_url('payment')?>">แจ้งชำระเงิน</a></li>
                                     <li><a href="<?php echo base_url('dealer')?>">Dealer</a></li>
+                                    <li><a href="<?php echo base_url('content')?>">บทความ</a></li>
                                     <li><a href="<?php echo base_url('contact')?>">ติดต่อเรา</a></li>
                                 </ul>
                             </nav>
@@ -190,13 +191,9 @@
                                     <li><a href="<?php echo base_url()?>"><i class="fa fa-home"></i></a></li>
                                     <li><a href="<?php echo base_url('products')?>">สินค้า</a></li>
                                     <li><a href="<?php echo base_url('howtobuy')?>">วิธีการสั่งซื้อ</a></li>
-                                        
                                     <li><a href="<?php echo base_url('payment')?>">แจ้งชำระเงิน</a></li>
-                                    <li><a href="<?php echo base_url('tracking')?>">การจัดส่ง</a></li>
-                                    <li><a href="<?php echo base_url('warranty')?>">การรับประกัน</a></li>
-
-                                    <li><a href="<?php echo base_url('dealer')?>">Dealer</a>
-                                    </li>
+                                    <li><a href="<?php echo base_url('dealer')?>">Dealer</a></li>
+                                    <li><a href="<?php echo base_url('content')?>">บทความ</a></li>
                                     <li><a href="<?php echo base_url('contact')?>">ติดต่อเรา</a></li>
                                 </ul>
                             </nav>
