@@ -184,16 +184,8 @@
                                 <h2 class="post-title">
                                     <a href="<?php echo $content['link'] ?>"><?php echo $content['title'] ?></a>
                                 </h2>
-                                <p><?php echo substr(strip_tags($content['post_content']),0,100); ?><a href="<?php echo $content['link'] ?>"> [...]
+                                <p><?php echo substr(strip_tags($content['post_content']),0,150); ?><a href="<?php echo $content['link'] ?>"> [อ่านต่อ]
                                 </a></p>
-                            </div>
-                            <div class="post-additional-info">
-                                <span class="post-date">
-                                     <?php echo $content['post_date'] ?>
-                                </span>
-                                <span class="post-author">
-                                    Post by  <b><?php echo $content['display_name'] ?></b>
-                                </span>
                             </div>
                         </div>
                     </div>

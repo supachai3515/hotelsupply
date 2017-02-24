@@ -94,8 +94,8 @@
 		navigation : false,
 		navigationText : ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
 		pagination :true,
-		items : 3,
-		itemsDesktop : [1199,3],
+		items : 4,
+		itemsDesktop : [1199,4],
 		itemsDesktopSmall : [979,2],
 		itemsMobile : [767,1]
 	  });

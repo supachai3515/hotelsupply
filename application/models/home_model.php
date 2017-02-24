@@ -39,7 +39,7 @@ class Home_model extends CI_Model {
 				LEFT JOIN wp_postmeta pm on  p.ID = pm.post_id
 				WHERE p.post_type='post'
 				AND p.post_status = 'publish'
-				AND pm.meta_key = '_thumbnail_id' LIMIT 10) m 
+				AND pm.meta_key = '_thumbnail_id' ORDER BY  p.post_date DESC LIMIT 10) m 
 				LEFT JOIN wp_posts p ON p.ID = m.id_file
 				LEFT JOIN wp_postmeta pm on  m.id_file = pm.post_id
 				LEFT JOIN wp_users u ON u.ID = m.post_author 
