@@ -54,7 +54,7 @@ class Products_model extends CI_Model {
 		$data_product = array(
 			'sku' => $this->input->post('sku'),
 			'name' => $this->input->post('name'),
-			'slug' => $this->Initdata_model->slug($this->input->post('slug')),
+			'slug' => $this->Initdata_model->slug($this->input->post('name')),
 			'product_type_id' => $this->input->post('select_type'),
 			'product_brand_id' => $this->input->post('select_brand'),
 			'model' => $this->input->post('model'),

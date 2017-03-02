@@ -80,7 +80,7 @@ class Producttype_model extends CI_Model {
 		date_default_timezone_set("Asia/Bangkok");
 		$data_producttype = array(
 			'name' => $this->input->post('name'),
-			'slug' => $this->$this->Initdata_model->slug($this->input->post('name')),
+			'slug' => $this->Initdata_model->slug($this->input->post('name')),
 			'description' => $this->input->post('description'),
 			'parenttype_id' => $this->input->post('select_type'),
 			'create_date' => date("Y-m-d H:i:s"),
