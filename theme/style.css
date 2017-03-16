@@ -1552,25 +1552,6 @@ h2.product-name a:hover{
 /*----------------------------------------*/
 /*  12. tag-area
 /*----------------------------------------*/
-.tag-area{margin-bottom: 40px;}
-.tag{margin-top: 18px;}
-.tag ul{}
-.tag ul li{display: inline-block;}
-.tag ul li a{
-   background: #f1f1f1 none repeat scroll 0 0;
-  border-radius: 4px;
-  display: block;
-  font-size: 14px;
-  line-height: 16px;
-  margin: 7px 7px 0 0;
-  padding: 8px 13px;
-  color: #666;
-  text-decoration: none;
-}
-.tag ul li a:hover{
-  background: #c4aa76 none repeat scroll 0 0;
-  color: #fff;
-}
 /*----------------------------------------*/
 /*  13. special-product-area
 /*----------------------------------------*/
