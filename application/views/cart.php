@@ -15,6 +15,7 @@
                 </div>
                 <!-- breadcrumbs end-->
                 <div style="padding-bottom: 30px;"></div>
+                 <?php session_start(); ?>
                 <!-- cart start-->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
