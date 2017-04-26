@@ -7,18 +7,18 @@
                         <div class="col-sm-3 col-lg-3 col-md-3">
                             <div class="static-book">
                                 <div class="footer-title">
-                                    <h2>BBoyComputer.com</h2>
+                                    <h2>Hotelsupply</h2>
                                 </div>
                                 <div class="footer-content">
-                                    <p>จำหน่าย ขาย อะไหล่โน๊ตบุ๊ค battery notebook,  keyboard notebook, adaptor notebook, LCD LED notebook,DVD notebook, รับซ่อม notebook”</p>
-                                    <span class="author">- BBoyComputer.com -</span>
+                                    <p>จำหน่าย อุปกรณ์โรงแรม HOTEL & SERVICED เฟอร์นิเจอร์โรงแรม</p>
+                                    <span class="author">- Hotelsupply.com -</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-3 col-lg-2 col-md-2">
                             <div class="my-account">
                                 <div class="footer-title">
-                                    <h2>BBoyComputer</h2>
+                                    <h2>Hotelsupply</h2>
                                 </div>
                                 <div class="footer-menu">
                                     <ul>
@@ -77,9 +77,7 @@
                                 </div>
                                 <div class="store-content">
                                     <ul>
-                                        <li>ร้าน B-Boy Computer พันทิพธ์พลาซ่า งามวงศ์วาน ชั้น 5 ติดศูนย์อาหาร</li>
-                                        <li>ปรึกษา สอบถามสินค้า : <span>086 555 6039</span> </li>
-                                        <li><a href="https://www.facebook.com/%E0%B8%AD%E0%B8%B0%E0%B9%84%E0%B8%AB%E0%B8%A5%E0%B9%88%E0%B9%82%E0%B8%99%E0%B9%8A%E0%B8%95%E0%B8%9A%E0%B8%B8%E0%B9%8A%E0%B8%84-%E0%B8%88%E0%B8%AD%E0%B9%82%E0%B8%99%E0%B9%8A%E0%B8%95%E0%B8%9A%E0%B8%B8%E0%B9%8A%E0%B8%84-%E0%B9%81%E0%B8%9A%E0%B8%95%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C%E0%B8%A3%E0%B8%B5%E0%B9%88-Notebook-bboycomputer-1563145163982000/" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook</a></li>
+                                        <li>จำหน่าย อุปกรณ์โรงแรม HOTEL & SERVICED เฟอร์นิเจอร์โรงแรม</li>
                                     </ul>
                                 </div>
                                 <div class="footer-payment">

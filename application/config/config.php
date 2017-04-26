@@ -33,22 +33,7 @@ $config['email_noreply'] = "hotelsupplyinth@gmail.com";
 $config['pass_mail_noreply'] = "1Q2W3E4R";
 $config['weburl'] = "http://www.hotelsupply.in.th/";
 
-$config['payment_transfer'] = '<h4>ธนาคารกรุงเทพ</h4>
-				<p>ชื่อบัญชี : นิรันดร์ พงศ์กิตติ์วิศาล<br/>
-				เลขที่บัญชี xxxxxxxxxx
-				</p>
-				<h4>ธนาคารไทยพาณิชย์</h4>
-				<p>ชื่อบัญชี : นิรันดร์ พงศ์กิตติ์วิศาล<br/>
-				เลขที่บัญชี xxxxxxxxxx
-				</p>
-				<h4>ธนาคารกสิกร</h4>
-				<p>ชื่อบัญชี : พิชชานันท์ พงศ์กิตติ์วิศาล<br/>
-				เลขที่บัญชี xxxxxxxxxx
-				</p>
-				<h4>ธนาคารกรุงไทย</h4>
-				<p>ชื่อบัญชี : นิรันดร์ พงศ์กิตติ์วิศาล<br/>
-				เลขที่บัญชี xxxxxxxxxx
-				</p>';
+$config['payment_transfer'] = '';
 								/*
 |--------------------------------------------------------------------------
 | Index File
