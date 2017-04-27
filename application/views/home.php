@@ -80,6 +80,66 @@
                         <?php endforeach ?>
                         </div>
                     </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ฐานเตียงโรงแรม.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/เตียงเหล็ก 2 ชั้น สีขาว10.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ปลอกหมอน.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="clearfix"> </div>
+
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้าขนหนู 1.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้าขนหนู 2.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้าขนหนู 3.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="clearfix"> </div>
+                    
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้าขนหนู.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้าเช็เดท้า.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/หมอนข้าง.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="clearfix"> </div>
+
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้านวม.png" class="img-responsive" alt="Image">
+                    </div>
+
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้าห่ม 1.png" class="img-responsive" alt="Image">
+                    </div>
+
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/สปลิเปอร์.png" class="img-responsive" alt="Image">
+                    </div>
+                    <div class="clearfix"> </div>
+
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/หมอน 1.png" class="img-responsive" alt="Image">
+                    </div>
+                    
+
+                    <div class="col-md-4">
+                        <img src="<?php echo base_url('uploads');?>/gallery/ผ้าคลุม.png" class="img-responsive" alt="Image">
+                    </div>
+
+
+                </div>
+
+                    
 
                 <!-- banner-area start-->
                 <div class="banner-area">
